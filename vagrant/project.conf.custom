@@ -1,0 +1,9 @@
+<VirtualHost *:80>
+  ServerName __ServerName__
+  DocumentRoot __DocumentRoot__
+  <Directory "__DocumentRoot__">
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+  </Directory>
+</VirtualHost>

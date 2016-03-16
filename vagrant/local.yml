@@ -1,0 +1,108 @@
+- hosts: 127.0.0.1
+  sudo: yes
+  vars:
+
+    project_name: epark_relax_api
+    server_name: api.epark-relax.me
+
+    root_dir: "/home/vagrant/epark_relax_api/"
+    document_root: "/home/vagrant/epark_relax_api/public"
+
+    db_name: epark_relax
+    db_user: root
+    db_pass: ""
+  tasks:
+    - name: yum update
+      yum: name=* state=latest
+
+    - name: remove localtime
+      file: path=/etc/localtime state=absent
+
+    - name: change timezone
+      file: src=/usr/share/zoneinfo/Asia/Tokyo dest=/etc/localtime state=link force=yes mode=0644
+
+    - name: change locale
+      command: sed -i "s/en_US/ja_JP/g" /etc/sysconfig/i18n
+
+    - name: install remi repository
+      command: rpm -Uvh --force http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+
+
+
+
+    - name: install apache
+      yum: name=httpd state=latest
+
+    - name: copy project.conf.custom
+      copy: src=project.conf.custom dest=/etc/httpd/conf.d/project.conf backup=yes
+      notify:
+        - restart apache
+
+    - name: update apache execute user
+      sudo: true
+      replace: >
+        dest=/etc/httpd/conf/httpd.conf
+        regexp='User apache'
+        replace='User vagrant'
+
+    - name: update apache execute group
+      sudo: true
+      replace: >
+        dest=/etc/httpd/conf/httpd.conf
+        regexp='Group apache'
+        replace='Group vagrant'
+
+    - name: replace project.conf
+      replace: dest=/etc/httpd/conf.d/project.conf regexp=__ServerName__ replace={{server_name}}
+    - name: replace project.conf
+      replace: dest=/etc/httpd/conf.d/project.conf regexp=__DocumentRoot__ replace={{document_root}}
+
+    - name: start apache and enabled
+      service: name=httpd state=started enabled=yes
+
+
+
+    - name: install gd-last
+      yum: name=gd-last enablerepo=remi state=latest
+
+    - name: install php
+      yum: name={{item}} enablerepo=remi-php56 state=present
+      with_items:
+        - php
+        - php-common
+        - php-pdo
+        - php-cli
+        - php-devel
+        - php-mysqlnd
+        - php-mbstring
+        - php-gd
+        - php-intl
+        - php-xml
+        - libmcrypt
+        - libmcrypt-devel
+        - php-mcrypt
+      notify:
+        - restart apache
+
+    - name: copy php.ini.custom
+      copy: src=php.ini.custom dest=/etc/php.ini backup=yes
+      notify:
+        - restart apache
+    - name: install composer
+      shell: curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer creates=/usr/local/bin/composer
+
+    - name: install mysql
+      yum: name={{item}} enablerepo=remi,epel state=present
+      with_items:
+          - mysql-server
+          - MySQL-python
+
+    - name: copy my.cnf.custom
+      copy: src=my.cnf.custom dest=/etc/my.cnf backup=yes
+
+    - name: start mysql and enabled
+      service: name=mysqld state=started enabled=yes
+
+  handlers:
+    - name: restart apache
+      service: name=httpd state=restarted

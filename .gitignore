@@ -1,0 +1,13 @@
+vendor/
+.vagrant
+
+#netbean ide
+nbproject
+
+# Laravel 5 & Lumen specific
+storage/
+.env.*.php
+.env.php
+.env
+.env.example
+/nbproject/private/
