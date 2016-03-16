@@ -2,13 +2,13 @@
   sudo: yes
   vars:
 
-    project_name: epark_relax_api
-    server_name: api.epark-relax.me
+    project_name: simple-ec
+    server_name: simple-ec.me
 
-    root_dir: "/home/vagrant/epark_relax_api/"
-    document_root: "/home/vagrant/epark_relax_api/public"
+    root_dir: "/home/vagrant/simple-ec/"
+    document_root: "/home/vagrant/simple-ec/public"
 
-    db_name: epark_relax
+    db_name: simple_ec
     db_user: root
     db_pass: ""
   tasks:
@@ -21,14 +21,8 @@
     - name: change timezone
       file: src=/usr/share/zoneinfo/Asia/Tokyo dest=/etc/localtime state=link force=yes mode=0644
 
-    - name: change locale
-      command: sed -i "s/en_US/ja_JP/g" /etc/sysconfig/i18n
-
     - name: install remi repository
       command: rpm -Uvh --force http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
-
-
-
 
     - name: install apache
       yum: name=httpd state=latest

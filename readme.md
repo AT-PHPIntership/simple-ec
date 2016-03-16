@@ -1,7 +1,6 @@
-# Epark Relax API
+# Simple EC site
 
-Epark Relax API built by power Laravel framework. 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+A simple EC site by Laravel framework 5.2.
 
 ## Install local environment
 
@@ -9,11 +8,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Vagrant >= 1.8
 - No need to install Ansible
 
-### Steps to install 
+### Steps to install
 
 ##### Checkout source code
 ```bash
-git clone git@github.com:AsianTechInc/EPark_Relax_API.git
+git clone git@github.com:AT-PHPIntership/simple-ec.git
 ```
 
 ##### Vagrant up
@@ -37,16 +36,16 @@ vagrant ssh
 Login ssh to the box, then login to mysql and create database
 
 ```bash
-$ mysql -u root -p 
+$ mysql -u root -p
 #empty password
-mysql> create database `epark_relax` character set utf8 collate utf8_general_ci;
+mysql> create database `simple_ec` character set utf8 collate utf8_general_ci;
 mysql> exit;
 ```
 
 ##### Install packages by composer
 
 ```bash
-cd ~/eprk_relax_api
+cd ~/simple-ec
 cp .env.sample .env
 composer install
 #php artisan migrate #if needed
@@ -54,14 +53,14 @@ composer install
 ##### Directory Permissions (after vagrant ssh)
 
 ```bash
-cd ~/eprk_relax_api
+cd ~/simple-ec
 sudo chmod -R 777 storage
 sudo chmod -R 777 bootstrap/cache
 ```
 
 ##### Add hosts
 
-Open `/etc/hosts` file and add this line `192.168.44.11   api.epark_relax.me`
+Open `/etc/hosts` file and add this line `192.168.44.12   simple-ec.me`
 
 
 
