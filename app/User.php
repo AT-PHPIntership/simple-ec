@@ -31,13 +31,14 @@ class User extends Authenticatable
     public $timestamps = true;
 
     /**
+     * Get Users by ID
      * @param $id
-     * @param bool $throw
-     * @return users by ID
+     * @param $throw
+     * @return mixed
      */
     public static function getUsersById($id, $throw = false)
     {
-        if( $throw ) {
+        if ($throw) {
             return self::findOrFail($id);
         } else {
             return self::find($id);
@@ -45,8 +46,9 @@ class User extends Authenticatable
     }
 
     /**
+     * Create Users
      * @param $data
-     * @return Users after create
+     * @return static
      */
     public static function createUser($data)
     {
@@ -57,9 +59,10 @@ class User extends Authenticatable
     }
 
     /**
+     * Update Users
      * @param $id
      * @param $data
-     * @return Users after update
+     * @return mixed
      */
     public static function updateUser($id, $data)
     {
@@ -72,6 +75,7 @@ class User extends Authenticatable
     }
 
     /**
+     * Get data Users
      * @return data Users [id, name, email]
      */
     public static function getData()

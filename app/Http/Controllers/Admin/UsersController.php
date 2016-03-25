@@ -15,14 +15,16 @@ use Flash;
 class UsersController extends Controller
 {
     /**
-     * index
+     * Index users
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
         return view('admin.users.index');
     }
 
     /**
-     * function GET create Users
+     * Function GET create Users
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getCreate()
     {
@@ -31,8 +33,9 @@ class UsersController extends Controller
     }
 
     /**
+     * Function POST create Users
      * @param UsersRequest $request
-     * function POST create Users
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function postCreate(UsersRequest $request)
     {
@@ -42,7 +45,7 @@ class UsersController extends Controller
             'success' => 'Create new user success.',
             'error'   => 'Create new user failed.'
         ];
-        if( $users ) {
+        if ($users) {
             Flash::success($messages['success']);
             return redirect('/admin/users');
         } else {
@@ -52,8 +55,9 @@ class UsersController extends Controller
     }
 
     /**
+     * Function GET edit users
      * @param $id
-     *  function GET edit users
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getEdit($id)
     {
@@ -63,9 +67,10 @@ class UsersController extends Controller
     }
 
     /**
+     * Function POST edit Users
      * @param $id
      * @param UsersRequest $request
-     *  function POST edit users
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function postEdit($id, UsersRequest $request)
     {
@@ -75,7 +80,7 @@ class UsersController extends Controller
             'success' => 'Update users success.',
             'error'   => 'Update new users failed.'
         ];
-        if( $users ) {
+        if ($users) {
             Flash::success($messages['success']);
             return redirect('/admin/users');
         } else {
@@ -85,8 +90,9 @@ class UsersController extends Controller
     }
 
     /**
+     * Delete A Users
      * @param $id
-     * delete a user
+     * @return A user
      */
     public function getDelete($id)
     {
@@ -100,14 +106,15 @@ class UsersController extends Controller
     }
 
     /**
-     *  get data users
+     * Get data Users
+     * @return Data users
      */
     public function getData()
     {
         $users = User::getData();
         $dataTables = Datatables::of($users)
-            ->add_column('actions'
-                ,'<a href="{{{ URL::to(\'admin/users/edit/\' . $id) }}}" class="btn btn-sm btn-icon btn-default btn-info" >
+            ->add_column('actions',
+                '<a href="{{{ URL::to(\'admin/users/edit/\' . $id) }}}" class="btn btn-sm btn-icon btn-default btn-info" >
                     <i class="icon wb-pencil" aria-hidden="true"></i>
                 </a>
                 <a href="{{{ URL::to(\'admin/users/delete/\' . $id) }}}" class="btn-del btn btn-sm btn-icon btn-default btn-danger">
