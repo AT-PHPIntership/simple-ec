@@ -16,8 +16,8 @@ class CreateOrdersDetailsTable extends Migration
             $table->increments('id');
             $table->integer('orders_id')->unsigned();
             $table->integer('products_id')->unsigned();
-            $table->integer('qty_pro_ordered')->unsigned();
-            $table->decimal('price_pro_ordered');
+            $table->integer('quantity')->unsigned();
+            $table->decimal('price');
             $table->foreign('orders_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
@@ -31,8 +31,6 @@ class CreateOrdersDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::table('orders_details', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('orders_details');
     }
 }
