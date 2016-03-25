@@ -30,13 +30,24 @@ class User extends Authenticatable
 
     public $timestamps = true;
 
-    public static function getUsersById($id , $throw = false){
-        if($throw)
+    /**
+     * @param $id
+     * @param bool $throw
+     * @return users by ID
+     */
+    public static function getUsersById($id, $throw = false)
+    {
+        if( $throw ) {
             return self::findOrFail($id);
-        else
+        } else {
             return self::find($id);
+        }
     }
 
+    /**
+     * @param $data
+     * @return Users after create
+     */
     public static function createUser($data)
     {
         $data['password'] = Hash::make($data['password']);
@@ -45,6 +56,11 @@ class User extends Authenticatable
         return $users;
     }
 
+    /**
+     * @param $id
+     * @param $data
+     * @return Users after update
+     */
     public static function updateUser($id, $data)
     {
         if (!empty($data['password'])) {
@@ -55,7 +71,11 @@ class User extends Authenticatable
         return $users;
     }
 
-    public static function getData(){
+    /**
+     * @return data Users [id, name, email]
+     */
+    public static function getData()
+    {
         return self::select(['id','name','email']);
     }
 }

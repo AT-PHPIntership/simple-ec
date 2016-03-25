@@ -9,7 +9,12 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    /**
+     * function home
+     */
+    public function index()
+    {
         return view('admin.dashboard.index');
     }
+
 }
