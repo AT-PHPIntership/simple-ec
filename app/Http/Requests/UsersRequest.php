@@ -30,7 +30,7 @@ class UsersRequest extends Request
                 'name'     => 'required',
                 'email'    => 'required|email|max:255|unique:users,email,'.$this->segment(4),
             ];
-        }else{
+        } else {
             return [
                 'name'     => 'required',
                 'email'    => 'required|email|max:255|unique:users,email,'.$this->segment(4),

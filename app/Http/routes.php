@@ -28,8 +28,7 @@ Route::get('/', function () {
 /**
  * Route for Backend
  */
-Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function()
-{
+Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function () {
     require __DIR__.'/Routes/Dashboard.php';
     require __DIR__.'/Routes/Users.php';
 });

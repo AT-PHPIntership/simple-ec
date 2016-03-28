@@ -1,2 +1,2 @@
 <?php
-    Route::get('/','Admin\DashboardController@index');
+    Route::get('/', 'Admin\DashboardController@index');
