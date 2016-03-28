@@ -30,11 +30,9 @@ Route::get('/', function () {
  */
 Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function () {
     require __DIR__.'/Routes/Dashboard.php';
-    require __DIR__.'/Routes/Users.php';
 });
 
 
 Route::group(['middleware' => ['web']], function () {
-    require __DIR__.'/Routes/Auth.php';
     require __DIR__.'/Routes/Frontend.php';
 });
