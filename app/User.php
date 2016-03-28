@@ -32,9 +32,11 @@ class User extends Authenticatable
 
     /**
      * Get Users by ID
-     * @param $id
-     * @param $throw
-     * @return mixed
+     *
+     * @param int     $id    id users.
+     * @param boolean $throw throw exception.
+     *
+     * @return users
      */
     public static function getUsersById($id, $throw = false)
     {
@@ -47,8 +49,10 @@ class User extends Authenticatable
 
     /**
      * Create Users
-     * @param $data
-     * @return static
+     *
+     * @param array $data data user submit.
+     *
+     * @return users create
      */
     public static function createUser($data)
     {
@@ -60,9 +64,11 @@ class User extends Authenticatable
 
     /**
      * Update Users
-     * @param $id
-     * @param $data
-     * @return mixed
+     *
+     * @param int   $id   id users.
+     * @param array $data data user submit.
+     *
+     * @return users update.
      */
     public static function updateUser($id, $data)
     {
@@ -76,6 +82,7 @@ class User extends Authenticatable
 
     /**
      * Get data Users
+     *
      * @return data Users [id, name, email]
      */
     public static function getData()

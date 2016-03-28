@@ -1,19 +1,22 @@
 <?php
-    
+
 namespace App\Helpers;
 
 use Flash;
 use Illuminate\Mail\Message;
 
-class GeneralHelper{
-
-	/**
-     * Set flash messags
-     * @param $status Status check for flash
-     * @param $messages Message send
-     * @param $uri_redirect Url redirect
+class GeneralHelper
+{
+    /**
+     * Using flash message when submit form.
+     *
+     * @param boolean $status      check messages for success or error.
+     * @param array   $messages    messages show.
+     * @param string  $urlRedirect url redirect.
+     *
+     * @return string URL redirect
      */
-    public static function setMessage($status, $messages, $uri_redirect = null)
+    public static function setMessage($status, $messages, $urlRedirect = null)
     {
         if ($status) {
             Flash::success($messages['success']);
@@ -21,9 +24,8 @@ class GeneralHelper{
             Flash::error($messages['error']);
         }
         
-        if ($uri_redirect != null) {
-            return redirect($uri_redirect);
+        if (null != $urlRedirect) {
+            return redirect($urlRedirect);
         }
     }
-
 }

@@ -10,11 +10,12 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
     /**
+     * Index admin
+     *
      * @return View index
      */
     public function index()
     {
         return view('admin.dashboard.index');
     }
-
 }
