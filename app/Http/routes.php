@@ -25,6 +25,9 @@ Route::get('/', function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function () {
+    require __DIR__.'/Routes/Users.php';
+});
 
 Route::group(['middleware' => ['web']], function () {
     //
