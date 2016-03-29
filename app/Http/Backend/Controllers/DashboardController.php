@@ -9,7 +9,13 @@ use App\Http\Backend\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    /**
+     * Index admmin
+     *
+     * @return view index of admin
+     */
+    public function index()
+    {
         return view('backend.dashboard.index');
     }
 }
