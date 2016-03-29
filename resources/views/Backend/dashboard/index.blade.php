@@ -1,4 +1,4 @@
-@extends('Backend.layout.layout')
+@extends('backend.layouts.master')
 
 @section('content')
         <!-- Content Wrapper. Contains page content -->
