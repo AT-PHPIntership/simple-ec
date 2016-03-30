@@ -15,7 +15,6 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    const ADMIN_PATH = 'admin';
     protected $namespace = [
         'App\Http\Backend\Controllers',
         'App\Http\Frontend\Controllers',
@@ -46,12 +45,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router, Request $request)
     {
-        if ($request->segment(1) == self::ADMIN_PATH) {
-            $namespace = $this->namespace[0];
-        } else {
-            $namespace = $this->namespace[1];
-        }
-        $router->group(['namespace' => $namespace], function ($router) {
+        $router->group(['namespace' => $this->namespace[0]], function ($router) {
+            require app_path('Http/Backend/routes.php');
+        });
+        $router->group(['namespace' => $this->namespace[1]], function ($router) {
             require app_path('Http/routes.php');
         });
     }

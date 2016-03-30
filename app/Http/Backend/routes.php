@@ -25,3 +25,9 @@
     | kernel and includes session state, CSRF protection, and more.
     |
     */
+    /**
+     * Route for Backend
+     */
+    Route::group(['prefix' => 'admin', 'middleware' => ['web']], function () {
+        Route::get('/', 'DashboardController@index');
+    });
