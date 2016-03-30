@@ -35,8 +35,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param Router  $router  router
-     * @param Request $request router
+     * @param Router $router router
      *
      * @return void
      */
