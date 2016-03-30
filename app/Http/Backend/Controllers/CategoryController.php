@@ -18,8 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = Category::select('id','name','image')->orderBy('id','DESC')->get();
-        return view('backend.category.list',compact('data'));
+        $data = Category::select('id', 'name', 'image')->orderBy('id', 'DESC')->get();
+        return view('backend.category.list', compact('data'));
     }
 
     /**
@@ -35,29 +35,31 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(CategoryRequest $request)
     {
         $img = $request->file('image');
-        $img_name = time().'-'.$img->getClientOriginalName();
+        $imgName = time().'-'.$img->getClientOriginalName();
         $cate = new Category;
         $cate->name = $request->txtName;
-        $cate->image =$img_name;
+        $cate->image =$imgName;
         $cate->save();
         $des = Category::IMAGES_PATH;
-        $img->move($des,$img_name);
+        $img->move($des, $imgName);
         return redirect()->route('admin.category.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id id category
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
     }
@@ -65,37 +67,37 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id id category
+
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $data = Category::findOrFail($id);
-        return view('backend.category.edit',compact('data','id'));
+        return view('backend.category.edit', compact('data', 'id'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request request
+     * @param int                      $id      id
+
      * @return \Illuminate\Http\Response
      */
     public function update(EditCategoryRequest $request, $id)
     {
-        dd('23456');
-        //Neu co thay doi anh
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
+            $cate = Category::find($id);
             $img = $request->file('image');
-            $img_name = time().'-'.$img->getClientOriginalName();
+            $imgName = time().'-'.$img->getClientOriginalName();
             $cate->name = $request->txtName;
-            $cate->image =$img_name;
+            $cate->image =$imgName;
             $cate->save();
             $des = Category::IMAGES_PATH;
-            $img->move($des,$img_name);
-            return redirect()->route('admin.category.index');
-        //Neu ko thay doi anh
-        }else{
+            $img->move($des, $imgName);
+            return redirect()->imgName('admin.category.index');
+        } else {
             $cate = Category::find($id);
             $cate->name = $request->txtName;
             $cate->save();
@@ -106,7 +108,8 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id id category
+
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

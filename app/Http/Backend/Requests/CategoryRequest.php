@@ -4,6 +4,7 @@ namespace App\Http\Backend\Requests;
 
 use App\Http\Backend\Requests\Request;
 use App\Http\Backend\Requests\CategoryRequest;
+
 class CategoryRequest extends Request
 {
     /**
@@ -20,7 +21,7 @@ class CategoryRequest extends Request
      * Get the validation rules that apply to the request.
      *
      * @return array
-     */
+     **/
     public function rules()
     {
         return [
@@ -28,14 +29,19 @@ class CategoryRequest extends Request
             'image'=>'required|image|max:2048',
         ];
     }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     **/
     public function messages()
     {
         return [
             'txtName.required'=>'Vui lòng nhập tên chuyên mục !',
-            'txtName.unique'=>'Tên chuyên mục đã tồn tại, vui lòng nhập tên khác !',
             'image.image'=>'Bạn phải nhập file hình ảnh !',
             'image.max'=>'Dung lượng bức ảnh không được quá 2 Mb !',
-            'image.required'=>'Vui lòng chọn hình ảnh !',
+            'image.required'=>'Vui long chon hinh anh!'
         ];
     }
 }

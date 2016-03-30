@@ -26,8 +26,7 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['prefix' => 'admin', 'middleware' => ['web']], function()
-{
-        require __DIR__.'/Routes/Dashboard.php';
-        Route::resource('category','CategoryController');
+Route::group(['prefix' => 'admin', 'middleware' => ['web'] ], function () {
+    Route::get('/', 'DashboardController@index');
+    Route::resource('category', 'CategoryController');
 });
