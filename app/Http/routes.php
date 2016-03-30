@@ -26,6 +26,7 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['prefix' => 'admin', 'middleware' => ['web'] ], function () {
+    Route::get('/', 'DashboardController@index');
+    Route::resource('category', 'CategoryController');
 });
