@@ -40,7 +40,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function map(Router $router, Request $request)
+    public function map(Router $router)
     {
         $router->group(['prefix' => 'admin', 'namespace' => $this->beNamespace], function ($router) {
             require app_path('Http/Backend/routes.php');
