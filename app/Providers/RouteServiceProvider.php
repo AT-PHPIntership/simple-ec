@@ -46,7 +46,7 @@ class RouteServiceProvider extends ServiceProvider
             require app_path('Http/Backend/routes.php');
         });
         $router->group(['namespace' => $this->feNamespace], function ($router) {
-            require app_path('Http/routes.php');
+            require app_path('Http/Frontend/routes.php');
         });
     }
 }
