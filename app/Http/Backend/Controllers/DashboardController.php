@@ -9,7 +9,13 @@ use App\Http\Backend\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    public function index(){
+     /**
+     * Update the specified resource in storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         return view('backend.dashboard.index');
     }
 }
