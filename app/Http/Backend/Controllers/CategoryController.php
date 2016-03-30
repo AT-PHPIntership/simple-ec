@@ -61,7 +61,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $cate = Category::find($id);
+        return $cate;
     }
 
     /**
