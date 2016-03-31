@@ -15,4 +15,7 @@
      */
     Route::group(['middleware' => ['web']], function () {
         Route::get('/', 'DashboardController@index');
+
+        //product
+        Route::resource('products', 'ProductsController');
     });
