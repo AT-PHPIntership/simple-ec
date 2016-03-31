@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
- @section('content')
+@section('content')
     <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
    <!-- Content Header (Page header) -->
@@ -38,7 +38,7 @@
                                 </thead>
                                 <tbody>
                                 <?php $stt=0; ?>
-                                @foreach($data as $item)
+                                @foreach($categories as $item)
                                 <?php $stt+=1; ?>
                                   <tr>
                                       <td style="text-align: center; padding-top: 60px;">{!! $stt !!}</td>
@@ -47,7 +47,7 @@
                                       <td style="text-align: center; padding-top: 60px;"><a href="{!! route('admin.category.edit',$item->id) !!}">Edit</a></td>
                                       <td style="text-align: center; padding-top: 60px;">
                                           {!! Form::open(['route'=>['admin.category.destroy',$item->id],'method'=>'DELETE']) !!}
-                                            <button type="submit" id="delete" class="btn btn-link">Delete</button>
+                                            <button onclick="return messageDelete('Are you sure?')" type="submit" id="delete" class="btn btn-link">Delete</button>
                                           {!! Form::close() !!}
                                       </td>
                                    </tr>

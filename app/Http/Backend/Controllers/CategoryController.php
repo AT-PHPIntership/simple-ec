@@ -18,8 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = Category::select('id', 'name', 'image')->orderBy('id', 'DESC')->get();
-        return view('backend.category.list', compact('data'));
+        $categories = Category::select('id', 'name', 'image')->orderBy('id', 'DESC')->get();
+        return view('backend.category.list', compact('categories'));
     }
 
     /**
@@ -39,14 +39,14 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(AddCategoryRequest $request)
     {
         $img = $request->file('image');
         $imgName = time().'-'.$img->getClientOriginalName();
-        $cate = new Category;
-        $cate->name = $request->txtName;
-        $cate->image =$imgName;
-        $cate->save();
+        $categories = new Category($request->all());
+        $categories->name = $request->name;
+        $categories->image =$imgName;
+        $categories->save();
         $des = Category::IMAGES_PATH;
         $img->move($des, $imgName);
         return redirect()->route('admin.category.index');
@@ -61,8 +61,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $cate = Category::find($id);
-        return $cate;
+        $categories = Category::find($id);
+        return $categories;
     }
 
     /**
@@ -74,34 +74,33 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $data = Category::findOrFail($id);
-        return view('backend.category.edit', compact('data', 'id'));
+        $category = Category::findOrFail($id);
+        return view('backend.category.edit', compact('category'));
     }
 
     /**
-     * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request request
-     * @param int                      $id      id
-
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id id category
      * @return \Illuminate\Http\Response
      */
     public function update(EditCategoryRequest $request, $id)
     {
         if ($request->hasFile('image')) {
-            $cate = Category::find($id);
+            $category = Category::find($id);
             $img = $request->file('image');
             $imgName = time().'-'.$img->getClientOriginalName();
-            $cate->name = $request->txtName;
-            $cate->image =$imgName;
-            $cate->save();
+            $category->name  = $request->name;
+            $category->image = $imgName;
+            $category->save();
             $des = Category::IMAGES_PATH;
             $img->move($des, $imgName);
-            return redirect()->imgName('admin.category.index');
+            return redirect()->route('admin.category.index');
         } else {
-            $cate = Category::find($id);
-            $cate->name = $request->txtName;
-            $cate->save();
+            $category = Category::find($id);
+            $category->name = $request->name;
+            $category->save();
             return redirect()->route('admin.category.index');
         }
     }
@@ -115,8 +114,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $cate = Category::findOrFail($id);
-        $cate->delete();
+        $categories = Category::findOrFail($id);
+        $categories->delete();
         return redirect()->route('admin.category.index');
     }
 }

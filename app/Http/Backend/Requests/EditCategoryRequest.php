@@ -25,8 +25,8 @@ class EditCategoryRequest extends Request
     public function rules()
     {
         return [
-            'txtName'=>'required|unique:categories,name,'.$this->segment(3),
-            'image'=>'image|max:2048',
+            'name'   =>'required|unique:categories,name,'.$this->segment(3),
+            'image'  =>'image|max:2048',
         ];
     }
     /**
@@ -37,9 +37,9 @@ class EditCategoryRequest extends Request
     public function messages()
     {
         return[
-            'txtName.required'=>'Vui lòng nhập tên chuyên mục !',
-            'image.image'=>'Bạn phải nhập file hình ảnh !',
-            'image.max'=>'Dung lượng bức ảnh không được quá 2 Mb !',
+            'name.required'     =>'Vui lòng nhập tên chuyên mục !',
+            'image.image'       =>'Bạn phải nhập file hình ảnh !',
+            'image.max'         =>'Dung lượng bức ảnh không được quá 2 Mb !',
         ];
     }
 }

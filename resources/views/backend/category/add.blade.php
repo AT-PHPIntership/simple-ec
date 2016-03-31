@@ -27,8 +27,8 @@
                  <!-- Categories Name -->
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category Name</label>
-                    <input size="50" type="text" class="form-control" name="txtName" id="exampleInputEmail1" placeholder="Enter Categories Name" />
-                    <p style="color:red; padding-top: 5px;">{!! $errors->first('txtName'); !!}</p>
+                    <input size="50" type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Enter Categories Name" />
+                    <p style="color:red; padding-top: 5px;">{!! $errors->first('name'); !!}</p>
                   </div>
                   <!-- End -->
                   <!-- Image -->

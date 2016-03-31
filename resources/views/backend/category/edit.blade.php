@@ -20,18 +20,18 @@
    <div class="row">
         <div class="col-md-6">
            <h2 style="color:red;">Edit Category</h2>
-                {!! Form::open(['route'=>['admin.category.update',$data['id']],'method'=>'PUT','files'=>'true']) !!}
+                {!! Form::open(['route'=>['admin.category.update',$category['id']],'method'=>'PUT','files'=>'true']) !!}
                  <!-- Categories Name -->
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category Name</label>
-                    <input size="50" type="text" class="form-control" name="txtName" id="exampleInputEmail1" placeholder="Enter Categories Name", value="{!! old('txtName',isset($data) ? $data['name'] : null )!!}" />
-                    <p style="color:red; padding-top: 5px;">{!! $errors->first('txtName'); !!}</p>
+                    <input size="50" type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Enter Categories Name", value="{!! old('txtName',isset($category) ? $category['name'] : null )!!}" />
+                    <p style="color:red; padding-top: 5px;">{!! $errors->first('name'); !!}</p>
                   </div>
                   <!-- End -->
                   <!-- Image old -->
                   <div class="form-group">
                     <label for="exampleInputFile">Image old</label>
-                    <img src="{{ asset('/uploads/'.$data->image) }}">
+                    <img src="{{ asset('/uploads/'.$category->image) }}">
                   </div>
                   <!-- End -->
                   <!-- Image new -->
