@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::select('id', 'name', 'image')->orderBy('id', 'DESC')->get();
+        $categories = Category::select('id', 'name', 'image')->orderBy('id', 'DESC')->paginate(2);
         return view('backend.categories.list', compact('categories'));
     }
 
@@ -61,8 +61,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $categories = Category::find($id);
-        return $categories;
+        $category = Category::find($id);
+        return $category;
     }
 
     /**

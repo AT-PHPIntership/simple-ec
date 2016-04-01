@@ -58,6 +58,28 @@
                     </div><!-- /.box -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
+            <!-- pagination -->
+            <nav>
+              <ul class="pagination">
+                @if( $categories->currentPage() != 1 )
+                <li>
+                  <a href="{!! $categories->url($categories->currentPage() -1) !!}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                @endif
+                @for( $i =1 ; $i <= $categories->lastPage(); $i = $i +1 )
+                <li class="{!! ($categories->currentPage() == $i) ? 'active' : '' !!}"><a href="{!! $categories->url($i) !!}">{!! $i !!}</a></li>
+                @endfor
+                @if( $categories->currentPage() != $categories->lastPage() )
+                <li>
+                  <a href="{!! $categories->url($categories->currentPage() +1) !!}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+                @endif
+              </ul>
+            </nav>
    </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 @stop
