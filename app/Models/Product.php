@@ -33,6 +33,11 @@ class Product extends Model implements SluggableInterface
         return $this->belongsTo('App\Models\Category');
     }
 
+    /**
+     * Get the order detail.
+     *
+     * @return ordersDetails
+     */
     public function ordersDetails()
     {
         return $this->hasMany('App\Models\OrdersDetails');
