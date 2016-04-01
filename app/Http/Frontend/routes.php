@@ -12,7 +12,7 @@
     */
 
     Route::get('/', function () {
-        return view('welcome');
+        return view('frontend.dashboard.index');
     });
 
     /*
@@ -25,3 +25,21 @@
     | kernel and includes session state, CSRF protection, and more.
     |
     */
+
+    Route::group(['middleware' => ['web']], function () {
+        Route::get('list', function () {
+            return view('frontend.dashboard.listproduct');
+        });
+        Route::get('detail', function () {
+            return view('frontend.dashboard.detailproduct');
+        });
+        Route::get('cart', function () {
+            return view('frontend.dashboard.cart');
+        });
+        Route::get('order', function () {
+            return view('frontend.dashboard.order');
+        });
+        Route::get('mess', function () {
+            return view('frontend.dashboard.mess_order');
+        });
+    });
