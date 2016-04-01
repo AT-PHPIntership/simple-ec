@@ -26,29 +26,9 @@ class CreateProductsRequest extends Request
     {
         return [
             'name'=>'required|unique:products,name',
-            'quantity'=>'required',
-            'price'=>'required',
+            'quantity'=>'required|min:1',
+            'price'=>'required|min:1',
             'image'=>'required|image|max:2048|',
-        ];
-    }
-
-    /**
-     * Message validate
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'name.required'=>'name is required .',
-            'name.unique'=>'this name is exists.',
-            'quantity.required'=>'quantity is required.',
-            'quantity.min'=>'Minimum is 1.',
-            'price.required'=>'price is required .',
-            'price.min'=>'Minimum is 1.',
-            'image.image'=>'image is required.',
-            'image.max'=>'Maximum is 2 Mb !',
-            'image.required'=>'image is required.',
         ];
     }
 }

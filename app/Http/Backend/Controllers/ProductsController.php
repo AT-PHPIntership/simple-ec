@@ -12,6 +12,8 @@ use App\Http\Backend\Controllers\Controller;
 use DB;
 use App\Models\Category;
 use Flash;
+use Config;
+use Illuminate\Pagination;
 
 class ProductsController extends Controller
 {
@@ -22,7 +24,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->get();
+        $products = Product::with('category')->Paginate(Config::get('constants.LIMIT_PAGE'));
         return view('backend.products.index', compact('products'));
     }
 
@@ -48,18 +50,14 @@ class ProductsController extends Controller
      */
     public function store(CreateProductsRequest $request)
     {
-        $messages = [
-            'success' => 'Create new products success.',
-            'error'   => 'Create new products failed.'
-        ];
         $data = $request->all();
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $data['image'] = Product::upload($image);
         }
         Product::create($data);
-        Flash::success($messages['success']);
-        return redirect('/admin/products');
+        Flash::success('Create new products success.');
+        return redirect()->route('admin.products.index');
     }
 
     /**
@@ -111,13 +109,8 @@ class ProductsController extends Controller
             $data['image'] = $product->image;
         }
         $product->update($data);
-        $messages = [
-            'success' => 'Update products success.',
-            'error'   => 'Update products failed. Please try again.'
-        ];
-
-        Flash::success($messages['success']);
-        return redirect('/admin/products');
+        Flash::success('Update products success.');
+        return redirect()->route('admin.products.index');
     }
 
     /**
@@ -133,6 +126,6 @@ class ProductsController extends Controller
         $product->delete();
         $messages = "Delete products success.";
         Flash::success($messages);
-        return redirect(('/admin/products'));
+        return redirect()->route('admin.products.index');
     }
 }

@@ -60,6 +60,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="paginations"> {{ $products->render() }} </div>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->
