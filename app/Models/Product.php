@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 
-class Products extends Model implements SluggableInterface
+class Product extends Model implements SluggableInterface
 {
     use SluggableTrait;
 
@@ -30,14 +30,9 @@ class Products extends Model implements SluggableInterface
      */
     public function category()
     {
-        return $this->belongsToMany('App\Models\Categories');
+        return $this->belongsTo('App\Models\Category');
     }
 
-    /**
-     * Get order details
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function ordersDetails()
     {
         return $this->hasMany('App\Models\OrdersDetails');

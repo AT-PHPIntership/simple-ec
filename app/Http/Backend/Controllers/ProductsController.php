@@ -2,7 +2,7 @@
 
 namespace App\Http\Backend\Controllers;
 
-use App\Models\Products;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Backend\Requests;
@@ -10,7 +10,7 @@ use App\http\Backend\Requests\CreateProductsRequest;
 use App\http\Backend\Requests\UpdateProductsRequest;
 use App\Http\Backend\Controllers\Controller;
 use DB;
-use App\Models\Categories;
+use App\Models\Category;
 use Flash;
 
 class ProductsController extends Controller
@@ -22,7 +22,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Products::with('category')->get();
+        $products = Product::with('category')->get();
         return view('backend.products.index', compact('products'));
     }
 
@@ -34,9 +34,10 @@ class ProductsController extends Controller
     public function create()
     {
         $title = 'Create new products';
-        $categories = Categories::pluck('name', 'id');
+        $categories = Category::pluck('name', 'id');
         return view('backend.products.create', compact('title', 'categories'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -47,25 +48,18 @@ class ProductsController extends Controller
      */
     public function store(CreateProductsRequest $request)
     {
-        $data = $request->all();
-
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $data['image'] = Products::upload($image);
-        }
-        $products = Products::create($data);
         $messages = [
             'success' => 'Create new products success.',
             'error'   => 'Create new products failed.'
         ];
-        if ($products) {
-            Flash::success($messages['success']);
-            return redirect('/admin/products');
-        } else {
-            Flash::error($messages['error']);
-            return redirect(('/admin/products/create'));
+        $data = $request->all();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $data['image'] = Product::upload($image);
         }
-
+        Product::create($data);
+        Flash::success($messages['success']);
+        return redirect('/admin/products');
     }
 
     /**
@@ -77,8 +71,10 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $products = Products::find($id);
-        return $products;
+        $title = 'Create new products';
+        $categories = Category::pluck('name', 'id');
+        $product = Product::findOrFail($id);
+        return view('backend.products.edit', compact('title', 'categories', 'product'));
     }
 
     /**
@@ -91,16 +87,9 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $title = 'Create new products';
-        $categories = Categories::pluck('name', 'id');
-        $products = Products::find($id);
-        if ($products) {
-            return view('backend.products.edit', compact('title', 'categories', 'products'));
-        } else {
-            $messages = "Product not found.";
-            Flash::error($messages);
-            return redirect(('/admin/products'));
-        }
-
+        $categories = Category::pluck('name', 'id');
+        $product = Product::findOrFail($id);
+        return view('backend.products.edit', compact('title', 'categories', 'product'));
     }
 
     /**
@@ -113,32 +102,22 @@ class ProductsController extends Controller
      */
     public function update(UpdateProductsRequest $request, $id)
     {
-        $products = Products::find($id);
-        if ($products) {
-            $data = $request->except('_token', '_method');
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $data['image'] = Products::upload($image);
-            } else {
-                $data['image'] = $products->image;
-            }
-            $products = Products::where('id', $id)->update($data);
-            $messages = [
-                'success' => 'Update products success.',
-                'error'   => 'Update products failed. Please try again.'
-            ];
-            if ($products) {
-                Flash::success($messages['success']);
-                return redirect('/admin/products');
-            } else {
-                Flash::error($messages['error']);
-                return redirect(('/admin/products/'.$id.'/edit'));
-            }
+        $product = Product::findOrFail($id);
+        $data = $request->except('_token', '_method');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $data['image'] = Product::upload($image);
         } else {
-            $messages = "Product not found.";
-            Flash::error($messages);
-            return redirect(('/admin/products'));
+            $data['image'] = $product->image;
         }
+        $product->update($data);
+        $messages = [
+            'success' => 'Update products success.',
+            'error'   => 'Update products failed. Please try again.'
+        ];
+
+        Flash::success($messages['success']);
+        return redirect('/admin/products');
     }
 
     /**
@@ -150,16 +129,10 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $products = Products::find($id);
-        if ($products) {
-            $products->delete();
-            $messages = "Delete products success.";
-            Flash::success($messages);
-            return redirect(('/admin/products'));
-        } else {
-            $messages = "Product not found.";
-            Flash::error($messages);
-            return redirect(('/admin/products'));
-        }
+        $product = Product::findOrFail($id);
+        $product->delete();
+        $messages = "Delete products success.";
+        Flash::success($messages);
+        return redirect(('/admin/products'));
     }
 }

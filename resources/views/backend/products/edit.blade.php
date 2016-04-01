@@ -34,26 +34,26 @@
                     </div>
                 @endif
                 @include('flash::message')
-                {!! Form::open(['route' => ['admin.products.update',$products->id] , 'class' => 'form-horizontal', 'method' => 'PUT' , 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['route' => ['admin.products.update',$product->id] , 'class' => 'form-horizontal', 'method' => 'PUT' , 'enctype' => 'multipart/form-data']) !!}
                     <div class="box-body">
                         <div class="form-group">
                             {!! Form::label('address', 'Category:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-9">
-                                {!! Form::select('category_id', $categories, $products->category_id, ['class' => 'form-control']) !!}
+                                {!! Form::select('category_id', $categories, $product->category_id, ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             {!! Form::label('name', 'Name:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-9">
-                                {!! Form::input('text', 'name', $products->name, array('class' => 'form-control')) !!}
+                                {!! Form::input('text', 'name', $product->name, array('class' => 'form-control')) !!}
                             </div>
                         </div>
-                        @if($products->image != '')
+                        @if($product->image != '')
                             <div class="form-group">
                                 {!! Form::label('', '', array('class' => 'col-sm-2 control-label')) !!}
                                 <div class="col-sm-4">
                                     <img class="img-rounded img-bordered img-bordered-primary" width="150" height="150"
-                                         src="{{ asset('/uploads/'.$products->image) }}" alt="">
+                                         src="{{ asset('/uploads/'.$product->image) }}" alt="">
                                 </div>
                             </div>
                         @endif
@@ -66,18 +66,18 @@
                         <div class="form-group">
                             {!! Form::label('quantity', 'Quantity:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-3">
-                                {!! Form::input('text', 'quantity', $products->quantity , array('class' => 'form-control')) !!}
+                                {!! Form::input('text', 'quantity', $product->quantity , array('class' => 'form-control')) !!}
                             </div>
                             {!! Form::label('price', 'Price:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-3">
-                                {!! Form::input('text', 'price', $products->price, array('class' => 'form-control')) !!}
+                                {!! Form::input('text', 'price', $product->price, array('class' => 'form-control')) !!}
                             </div>
                             {!! Form::label('unit', 'VNĐ', array('class' => 'col-sm-1 control-label')) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('description', 'Description:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-9">
-                                {!! Form::textarea('description', $products->description,['class'=>'form-control', 'rows' => 4, 'cols' => 40]) !!}
+                                {!! Form::textarea('description', $product->description,['class'=>'form-control', 'rows' => 4, 'cols' => 40]) !!}
                             </div>
                         </div>
                     </div><!-- /.box-body -->
