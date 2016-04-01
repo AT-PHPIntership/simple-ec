@@ -27,19 +27,19 @@
     */
 
     Route::group(['middleware' => ['web']], function () {
-        Route::get('list',function () {
+        Route::get('list', function () {
             return view('frontend.dashboard.listproduct');
         });
-        Route::get('detail',function () {
+        Route::get('detail', function () {
             return view('frontend.dashboard.detailproduct');
         });
-        Route::get('cart',function () {
+        Route::get('cart', function () {
             return view('frontend.dashboard.cart');
         });
-        Route::get('order',function () {
+        Route::get('order', function () {
             return view('frontend.dashboard.order');
         });
-        Route::get('mess',function () {
+        Route::get('mess', function () {
             return view('frontend.dashboard.mess_order');
         });
     });
