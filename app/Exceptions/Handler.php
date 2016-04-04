@@ -8,6 +8,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Log;
 
 class Handler extends ExceptionHandler
 {
@@ -48,6 +49,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        $trace = $e->getTraceAsString();
+        if ($e instanceof ModelNotFoundException && mb_strpos($trace, 'app/Http/Backend/Controllers')) {
+            $message = $e->getMessage();
+            return view('backend.errors.404', compact('message'));
+        }
         return parent::render($request, $e);
     }
 }
