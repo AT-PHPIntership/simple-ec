@@ -16,7 +16,9 @@ class Product extends Model implements SluggableInterface
         'on_update'  => true,
     ];
 
-    const UPLOAD_IMAGE_PATH = '/public/uploads/';
+    protected $perPage = 10;
+
+    const UPLOAD_IMAGE_PATH = 'uploads/';
     protected $table = 'products';
 
     protected $fillable = [
@@ -24,7 +26,7 @@ class Product extends Model implements SluggableInterface
     ];
 
     /**
-     * Get the category.
+     * Get list category
      *
      * @return category
      */
@@ -36,11 +38,11 @@ class Product extends Model implements SluggableInterface
     /**
      * Get the order detail.
      *
-     * @return ordersDetails
+     * @return ordersDetail
      */
-    public function ordersDetails()
+    public function ordersDetail()
     {
-        return $this->hasMany('App\Models\OrdersDetails');
+        return $this->hasMany('App\Models\OrdersDetail');
     }
 
     /**
@@ -52,7 +54,7 @@ class Product extends Model implements SluggableInterface
      */
     public static function upload($photo)
     {
-        $destinationPath = base_path() . self::UPLOAD_IMAGE_PATH;
+        $destinationPath = public_path(self::UPLOAD_IMAGE_PATH);
         $imgName = time().'_'.$photo->getClientOriginalName();
         $photo->move($destinationPath, $imgName);
         return $imgName;

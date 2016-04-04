@@ -35,9 +35,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $title = 'Create new products';
         $categories = Category::pluck('name', 'id');
-        return view('backend.products.create', compact('title', 'categories'));
+        return view('backend.products.create', compact('categories'));
     }
 
 
@@ -69,10 +68,9 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $title = 'Create new products';
         $categories = Category::pluck('name', 'id');
         $product = Product::findOrFail($id);
-        return view('backend.products.edit', compact('title', 'categories', 'product'));
+        return view('backend.products.edit', compact('categories', 'product'));
     }
 
     /**
@@ -84,10 +82,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $title = 'Create new products';
         $categories = Category::pluck('name', 'id');
         $product = Product::findOrFail($id);
-        return view('backend.products.edit', compact('title', 'categories', 'product'));
+        return view('backend.products.edit', compact('categories', 'product'));
     }
 
     /**
@@ -101,12 +98,10 @@ class ProductsController extends Controller
     public function update(UpdateProductsRequest $request, $id)
     {
         $product = Product::findOrFail($id);
-        $data = $request->except('_token', '_method');
+        $data = $request->all();
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $data['image'] = Product::upload($image);
-        } else {
-            $data['image'] = $product->image;
         }
         $product->update($data);
         Flash::success('Update products success.');
