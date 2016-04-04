@@ -12,8 +12,6 @@ use App\Http\Backend\Controllers\Controller;
 use DB;
 use App\Models\Category;
 use Flash;
-use Config;
-use Illuminate\Pagination;
 
 class ProductsController extends Controller
 {
@@ -24,7 +22,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->Paginate(Config::get('constants.LIMIT_PAGE'));
+        $products = Product::with('category')->Paginate();
         return view('backend.products.index', compact('products'));
     }
 
