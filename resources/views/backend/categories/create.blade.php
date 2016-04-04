@@ -20,14 +20,14 @@
    <div class="row">
         <div class="col-md-6">
            <h2 style="color:red;">Insert Category</h2>
-                   {!!Form::open([
+                   {{ Form::open([
                         'route'=>'admin.categories.store',
                         'files'=>true
-                   ])!!}
+                   ]) }}
                  <!-- Categories Name -->
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category Name</label>
-                    <input size="50" type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Enter Categories Name" value="{!! (isset( $request->name )) ? '$request->name' : '' !!}" />
+                    <input size="50" type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Enter Categories Name" value="{!! old('name') !!}" />
                     <p style="color:red; padding-top: 5px;">{!! $errors->first('name'); !!}</p>
                   </div>
                   <!-- End -->
@@ -39,7 +39,7 @@
                   </div>
                   <!-- End -->
                   <button type="submit" name="ok" class="btn btn-default">Add Category</button>
-                {{Form::close()}}
+                {{ Form::close() }}
              </div>
         </div>
     </div>

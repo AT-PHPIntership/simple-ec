@@ -57,9 +57,9 @@
                                       <td style="text-align: center;"><img src="{{ asset('/uploads/'.$item->image) }}" width="100px;" /></td>
                                       <td style="text-align: center; padding-top: 60px;"><a href="{!! route('admin.categories.edit',$item->id) !!}">Edit</a></td>
                                       <td style="text-align: center; padding-top: 60px;">
-                                          {!! Form::open(['route'=>['admin.categories.destroy',$item->id],'method'=>'DELETE']) !!}
+                                          {{ Form::open(['route'=>['admin.categories.destroy',$item->id],'method'=>'DELETE']) }}
                                             <button onclick="return messageDelete('Bạn chắc chắc xóa ?')" type="submit" id="delete" class="btn btn-link">Delete</button>
-                                          {!! Form::close() !!}
+                                          {{ Form::close() }}
                                       </td>
                                    </tr>
                                   @endforeach
