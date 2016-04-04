@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::select('id', 'name', 'image')->orderBy('id', 'DESC')->paginate(2);
+        $categories = Category::select('id', 'name', 'image')->orderBy('id', 'DESC')->paginate(10);
         return view('backend.categories.list', compact('categories'));
     }
 
@@ -29,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.categories.add');
+        return view('backend.categories.create');
     }
 
     /**
@@ -41,15 +41,13 @@ class CategoryController extends Controller
      */
     public function store(AddCategoryRequest $request)
     {
-        $img = $request->file('image');
-        $imgName = time().'-'.$img->getClientOriginalName();
-        $categories = new Category($request->all());
-        $categories->name = $request->name;
-        $categories->image =$imgName;
-        $categories->save();
-        $des = Category::IMAGES_PATH;
-        $img->move($des, $imgName);
-        return redirect()->route('admin.categories.index');
+        $data = $request->all();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $data['image'] = Category::upload($image);
+        }
+        Category::create($data);
+        return redirect()->route('admin.categories.index')->with(['flashMessage'=>'Thêm thành công !']);
     }
 
     /**
@@ -61,7 +59,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         return $category;
     }
 
@@ -88,22 +86,14 @@ class CategoryController extends Controller
      */
     public function update(EditCategoryRequest $request, $id)
     {
+        $category = Category::find($id);
+        $data = $request->all();
         if ($request->hasFile('image')) {
-            $category = Category::find($id);
-            $img = $request->file('image');
-            $imgName = time().'-'.$img->getClientOriginalName();
-            $category->name  = $request->name;
-            $category->image = $imgName;
-            $category->save();
-            $des = Category::IMAGES_PATH;
-            $img->move($des, $imgName);
-            return redirect()->route('admin.categories.index');
-        } else {
-            $category = Category::find($id);
-            $category->name = $request->name;
-            $category->save();
-            return redirect()->route('admin.categories.index');
+            $image = $request->file('image');
+            $data['image'] = Category::upload($image);
         }
+        $category->update($data);
+        return redirect()->route('admin.categories.index')->with(['flashMessage'=>'Sửa thành công !']);
     }
 
     /**
@@ -115,8 +105,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $categories = Category::findOrFail($id);
-        $categories->delete();
-        return redirect()->route('admin.categories.index');
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect()->route('admin.categories.index')->with(['flashMessage'=>'Xóa thành công !']);
     }
 }

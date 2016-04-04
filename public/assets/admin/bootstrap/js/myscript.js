@@ -7,3 +7,4 @@ function messageDelete(msg)
         return false;
     }
 }
+$("div.alert").delay(3000).slideUp();

@@ -34,12 +34,4 @@ class EditCategoryRequest extends Request
      *
      * @return \Illuminate\Http\Response
      */
-    public function messages()
-    {
-        return[
-            'name.required'     =>'Vui lòng nhập tên chuyên mục !',
-            'image.image'       =>'Bạn phải nhập file hình ảnh !',
-            'image.max'         =>'Dung lượng bức ảnh không được quá 2 Mb !',
-        ];
-    }
 }

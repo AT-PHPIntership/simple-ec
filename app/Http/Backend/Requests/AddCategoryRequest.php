@@ -35,13 +35,4 @@ class AddCategoryRequest extends Request
      *
      * @return array
      **/
-    public function messages()
-    {
-        return [
-            'name.required'     =>'Vui lòng nhập tên chuyên mục !',
-            'image.image'       =>'Bạn phải nhập file hình ảnh !',
-            'image.max'         =>'Dung lượng bức ảnh không được quá 2 Mb !',
-            'image.required'    =>'Vui lòng chọn hình ảnh!',
-        ];
-    }
 }

@@ -15,11 +15,22 @@
    </section>
    <!-- Main content -->
    <section class="content">
+    <!-- flassMessage -->
+    <div class="row">
+        <div class="col-xs-12">
+            @if( Session::has('flashMessage') )
+                <div class="alert alert-success">
+                    {!! Session::get('flashMessage') !!}
+                </div>
+            @endif
+        </div>
+    </div>
+    <!-- form listCategory -->
     <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">List Cate</h3>
+                            <h3 class="box-title">List Category</h3>
                             <a href="{{ route('admin.categories.create') }}">
                                 <button type="button" class="btn btn-floating btn-primary btn-sm pull-right">
                                 <i class="icon wb-plus" aria-hidden="true"> </i></button>
@@ -43,11 +54,11 @@
                                   <tr>
                                       <td style="text-align: center; padding-top: 60px;">{!! $stt !!}</td>
                                       <td style="text-align: center; padding-top: 60px;">{!! $item->name !!} </td>
-                                      <td style="text-align: center;"><img src="{{ asset(\App\Category::IMAGES_PATH.$item['image']) }}" width="100px;" /></td>
+                                      <td style="text-align: center;"><img src="{{ asset('/uploads/'.$item->image) }}" width="100px;" /></td>
                                       <td style="text-align: center; padding-top: 60px;"><a href="{!! route('admin.categories.edit',$item->id) !!}">Edit</a></td>
                                       <td style="text-align: center; padding-top: 60px;">
                                           {!! Form::open(['route'=>['admin.categories.destroy',$item->id],'method'=>'DELETE']) !!}
-                                            <button onclick="return messageDelete('Are you sure?')" type="submit" id="delete" class="btn btn-link">Delete</button>
+                                            <button onclick="return messageDelete('Bạn chắc chắc xóa ?')" type="submit" id="delete" class="btn btn-link">Delete</button>
                                           {!! Form::close() !!}
                                       </td>
                                    </tr>
@@ -59,26 +70,28 @@
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <!-- pagination -->
-            <nav>
-              <ul class="pagination">
-                @if( $categories->currentPage() != 1 )
-                <li>
-                  <a href="{!! $categories->url($categories->currentPage() -1) !!}" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                @endif
-                @for( $i =1 ; $i <= $categories->lastPage(); $i = $i +1 )
-                <li class="{!! ($categories->currentPage() == $i) ? 'active' : '' !!}"><a href="{!! $categories->url($i) !!}">{!! $i !!}</a></li>
-                @endfor
-                @if( $categories->currentPage() != $categories->lastPage() )
-                <li>
-                  <a href="{!! $categories->url($categories->currentPage() +1) !!}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-                @endif
-              </ul>
+            <nav style="text-align: right;">
+              @if( $categories->lastPage() > 1 )
+                  <ul class="pagination">
+                    @if( $categories->currentPage() != 1 )
+                        <li>
+                          <a href="{!! $categories->url($categories->currentPage() -1) !!}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                          </a>
+                        </li>
+                    @endif
+                    @for( $i =1 ; $i <= $categories->lastPage(); $i = $i +1 )
+                        <li class="{!! ($categories->currentPage() == $i) ? 'active' : '' !!}"><a href="{!! $categories->url($i) !!}">{!! $i !!}</a></li>
+                    @endfor
+                    @if( $categories->currentPage() != $categories->lastPage() )
+                        <li>
+                          <a href="{!! $categories->url($categories->currentPage() +1) !!}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                    @endif
+                  </ul>
+              @endif
             </nav>
    </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
