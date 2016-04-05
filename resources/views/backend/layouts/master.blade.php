@@ -61,6 +61,8 @@
 	<!-- Bootstrap 3.3.5 -->
 	<script src="{{ asset('/assets/admin/bootstrap/js/bootstrap.min.js') }}"></script>
 	<!-- AdminLTE App -->
+    <!-- messDelete -->
+    <script src="{{ asset('/assets/admin/bootstrap/js/myscript.js') }}"></script>
 	<script src="{{ asset('/assets/admin/dist/js/app.min.js') }}"></script>
 	<!-- DataTables -->
 	<script src="{{ asset('/assets/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
