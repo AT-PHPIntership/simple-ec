@@ -27,7 +27,7 @@
             </ul>
          </li>
          <li class="header">MANAGER</li>
-         <li><a href="{{ url('/admin/category') }}"><i class="fa fa-inbox"></i> <span>Category</span></a></li>
+         <li><a href="{{ route('admin.categories.index') }}"><i class="fa fa-inbox"></i> <span>Category</span></a></li>
          <li><a href="{{ url('/admin/products') }}"><i class="fa fa-gift"></i> <span>Products</span></a></li>
          <li><a href="{{ url('/admin/orders') }}"><i class="fa fa-shopping-cart"></i> <span>Orders</span></a></li>
 
