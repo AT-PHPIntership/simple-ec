@@ -20,7 +20,7 @@
    <div class="row">
         <div class="col-md-6">
            <h2 style="color:red;">Edit Category</h2>
-                {{ Form::open(['route'=>['admin.categories.update',$category['id']],'method'=>'PUT','files'=>'true']) }}
+                {!! Form::open(['route'=>['admin.categories.update',$category['id']],'method'=>'PUT','files'=>'true']) !!}
                  <!-- Categories Name -->
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category Name</label>
@@ -42,7 +42,7 @@
                   </div>
                   <!-- End -->
                   <button type="submit" name="ok" class="btn btn-default">Edit Category</button>
-                {{ Form::close() }}
+                {!! Form::close() !!}
              </div>
         </div>
     </div>

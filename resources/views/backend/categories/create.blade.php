@@ -20,10 +20,10 @@
    <div class="row">
         <div class="col-md-6">
            <h2 style="color:red;">Insert Category</h2>
-                   {{ Form::open([
+                   {!! Form::open([
                         'route'=>'admin.categories.store',
                         'files'=>true
-                   ]) }}
+                   ]) !!}
                  <!-- Categories Name -->
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category Name</label>
@@ -39,7 +39,7 @@
                   </div>
                   <!-- End -->
                   <button type="submit" name="ok" class="btn btn-default">Create Category</button>
-                {{ Form::close() }}
+                {!! Form::close() !!}
              </div>
         </div>
     </div>
