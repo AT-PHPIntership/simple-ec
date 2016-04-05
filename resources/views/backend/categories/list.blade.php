@@ -18,11 +18,7 @@
     <!-- flassMessage -->
     <div class="row">
         <div class="col-xs-12">
-            @if( Session::has('flashMessage') )
-                <div class="alert alert-success">
-                    {!! Session::get('flashMessage') !!}
-                </div>
-            @endif
+            @include('flash::message')
         </div>
     </div>
     <!-- form listCategory -->

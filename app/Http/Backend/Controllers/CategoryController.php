@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Backend\Requests\CreateCategoryRequest;
 use App\Http\Backend\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Flash;
 
 class CategoryController extends Controller
 {
@@ -47,7 +48,8 @@ class CategoryController extends Controller
             $data['image'] = Category::upload($image);
         }
         Category::create($data);
-        return redirect()->route('admin.categories.index')->with(['flashMessage'=>'Thêm thành công !']);
+        Flash::success('Create new category success.');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -93,7 +95,8 @@ class CategoryController extends Controller
             $data['image'] = Category::upload($image);
         }
         $category->update($data);
-        return redirect()->route('admin.categories.index')->with(['flashMessage'=>'Sửa thành công !']);
+        Flash::success('Update category success.');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -107,6 +110,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('admin.categories.index')->with(['flashMessage'=>'Xóa thành công !']);
+        Flash::success('Delete category success.');
+        return redirect()->route('admin.categories.index');
     }
 }
