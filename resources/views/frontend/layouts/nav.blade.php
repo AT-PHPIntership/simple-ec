@@ -17,15 +17,14 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                     <li class="active"><a href="{{ url('/') }}">Home<span class="sr-only">(current)</span></a></li>
+                        <?php
+                            $categories = DB::table('categories')->select('name')->get();
+                        ?>
+                        @foreach( $categories as $category )
                         <li>
-                            <a href="#">Link 1</a>
+                            <a href="#">{!! $category->name !!}</a>
                         </li>
-                        <li>
-                            <a href="#">Link 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Link 3</a>
-                        </li>
+                        @endforeach
                   </ul>
                   <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
