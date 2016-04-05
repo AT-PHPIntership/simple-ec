@@ -48,8 +48,8 @@
                                 @foreach($categories as $item)
                                 <?php $stt+=1; ?>
                                   <tr>
-                                      <td style="text-align: center; padding-top: 60px;">{!! $stt !!}</td>
-                                      <td style="text-align: center; padding-top: 60px;">{!! $item->name !!} </td>
+                                      <td style="text-align: center; padding-top: 60px;">{{ $stt }}</td>
+                                      <td style="text-align: center; padding-top: 60px;">{{ $item->name }} </td>
                                       <td style="text-align: center;"><img src="{{ asset('/uploads/'.$item->image) }}" width="100px;" /></td>
                                       <td style="text-align: center; padding-top: 60px;"><a href="{!! route('admin.categories.edit',$item->id) !!}">Edit</a></td>
                                       <td style="text-align: center; padding-top: 60px;">
