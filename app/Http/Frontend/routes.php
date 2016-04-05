@@ -11,10 +11,7 @@
     |
     */
 
-    Route::get('/', function () {
-        $products = DB::table('products')->select('name', 'price', 'image')->skip(0)->take(6)->get();
-        return view('frontend.dashboard.index', compact('products'));
-    });
+    Route::get('/', 'HomeController@index');
 
     /*
     |--------------------------------------------------------------------------

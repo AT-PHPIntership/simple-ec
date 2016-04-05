@@ -21,9 +21,7 @@
                             $categories = DB::table('categories')->select('name')->get();
                         ?>
                         @foreach( $categories as $category )
-                        <li>
-                            <a href="#">{!! $category->name !!}</a>
-                        </li>
+                        <li><a href="#">{!! $category->name !!}</a></li>
                         @endforeach
                   </ul>
                   <form class="navbar-form navbar-left" role="search">

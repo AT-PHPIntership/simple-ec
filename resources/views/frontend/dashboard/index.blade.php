@@ -20,10 +20,12 @@
 			@foreach( $products as $products )
             <div class="col-sm-6 col-md-4">
 			    <div class="thumbnail">
-			      <img src="{!! asset('uploads/'.$products->image) !!}" alt="image not found" width="200px">
+			      <a href="#">
+                    <img src="{{ asset('uploads/'.$products->image) }}" alt="image not found" width="200px">
+                  </a>
 			      <div class="caption" >
-			        <h4>{!! $products->name !!}</h4>
-			        <p>{!! $products->price !!}</p>
+			        <h4 style="color:blue;">{{ $products->name }}</h4>
+			        <p style="color:red;">{{ number_format($products->price,0,",",".") }} $</p>
 			        <p><a href="#" class="btn btn-primary" role="button">Add Cart</a> <a href="#" class="btn btn-success" role="button">View Detail</a></p>
 			      </div>
 			    </div>
