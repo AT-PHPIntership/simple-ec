@@ -58,6 +58,8 @@
 
 	<!-- jQuery 2.1.4 -->
 	<script src="{{ asset('/assets/admin/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+    <!-- myscript -->
+    <script src="{{ asset('/assets/admin/bootstrap/js/myscript.js') }}"></script>
 	<!-- Bootstrap 3.3.5 -->
 	<script src="{{ asset('/assets/admin/bootstrap/js/bootstrap.min.js') }}"></script>
 	<!-- AdminLTE App -->
