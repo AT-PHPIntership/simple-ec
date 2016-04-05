@@ -15,11 +15,8 @@
      */
     Route::group(['middleware' => ['web']], function () {
         Route::get('/', 'DashboardController@index');
-<<<<<<< HEAD
+        //category
         Route::resource('categories', 'CategoryController');
-=======
-
         //product
         Route::resource('products', 'ProductsController');
->>>>>>> master
     });
