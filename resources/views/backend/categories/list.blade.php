@@ -9,8 +9,8 @@
          <small>Danh mục sản phẩm</small>
       </h1>
       <ol class="breadcrumb">
-         <li><a href="#"><i class="fa fa-dashboard"></i>Level</a></li>
-         <li class="active">list</li>
+         <li><a href="{!! route('admin.categories.index') !!}"><i class="fa fa-dashboard"></i>Home</a></li>
+         <li class="active">ListCategory</li>
       </ol>
    </section>
    <!-- Main content -->
@@ -27,7 +27,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">List Category</h3>
-                            <a href="{{ route('admin.categories.create') }}">
+                            <a href="{!! route('admin.categories.create') !!}">
                                 <button type="button" class="btn btn-floating btn-primary btn-sm pull-right">
                                 <i class="icon wb-plus" aria-hidden="true"> </i></button>
                             </a>
@@ -48,13 +48,13 @@
                                 @foreach($categories as $item)
                                 <?php $stt+=1; ?>
                                   <tr>
-                                      <td style="text-align: center; padding-top: 60px;">{{ $stt }}</td>
+                                      <td style="text-align: center; padding-top: 60px;">{!! $stt !!}</td>
                                       <td style="text-align: center; padding-top: 60px;">{{ $item->name }} </td>
-                                      <td style="text-align: center;"><img src="{{ asset('/uploads/'.$item->image) }}" width="100px;" /></td>
+                                      <td style="text-align: center;"><img src="{!! asset('/uploads/'.$item->image) !!}" width="100px;" /></td>
                                       <td style="text-align: center; padding-top: 60px;"><a href="{!! route('admin.categories.edit',$item->id) !!}">Edit</a></td>
                                       <td style="text-align: center; padding-top: 60px;">
                                           {!! Form::open(['route'=>['admin.categories.destroy',$item->id],'method'=>'DELETE']) !!}
-                                            <button onclick="return messageDelete('Bạn chắc chắc xóa ?')" type="submit" id="delete" class="btn btn-link">Delete</button>
+                                            <button onclick="return messageDelete('Are you sure ?')" type="submit" id="delete" class="btn btn-link">Delete</button>
                                           {!! Form::close() !!}
                                       </td>
                                    </tr>

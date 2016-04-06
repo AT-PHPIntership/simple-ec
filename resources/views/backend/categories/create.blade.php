@@ -9,8 +9,8 @@
          <small>Danh mục sản phẩm</small>
       </h1>
       <ol class="breadcrumb">
-         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-         <li class="active">create</li>
+         <li><a href="{!! route('admin.categories.index') !!}"><i class="fa fa-dashboard"></i> Level</a></li>
+         <li class="active">CreateCategory</li>
       </ol>
    </section>
 
@@ -27,7 +27,7 @@
                  <!-- Categories Name -->
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category Name</label>
-                    <input size="50" type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Enter Categories Name" value="{!! old('name') !!}" />
+                    <input size="50" type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Enter Categories Name" value="{{ old('name') }}" />
                     <p style="color:red; padding-top: 5px;">{!! $errors->first('name'); !!}</p>
                   </div>
                   <!-- End -->

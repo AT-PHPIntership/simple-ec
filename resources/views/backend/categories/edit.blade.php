@@ -9,8 +9,8 @@
          <small>Danh mục sản phẩm</small>
       </h1>
       <ol class="breadcrumb">
-         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-         <li class="active">edit</li>
+         <li><a href="{!! route('admin.categories.index') !!}"><i class="fa fa-dashboard"></i> Level</a></li>
+         <li class="active">EditCategory</li>
       </ol>
    </section>
 
@@ -24,14 +24,14 @@
                  <!-- Categories Name -->
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category Name</label>
-                    <input size="50" type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Enter Categories Name", value="{!! old('txtName',isset($category) ? $category['name'] : null )!!}" />
+                    <input size="50" type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Enter Categories Name", value="{{ old('txtName',isset($category) ? $category['name'] : null ) }}" />
                     <p style="color:red; padding-top: 5px;">{!! $errors->first('name'); !!}</p>
                   </div>
                   <!-- End -->
                   <!-- Image old -->
                   <div class="form-group">
                     <label for="exampleInputFile">Image old</label>
-                    <img src="{{ asset('/uploads/'.$category->image) }}" width="200px" />
+                    <img src="{!! asset('/uploads/'.$category->image) !!}" width="200px" />
                   </div>
                   <!-- End -->
                   <!-- Image new -->
