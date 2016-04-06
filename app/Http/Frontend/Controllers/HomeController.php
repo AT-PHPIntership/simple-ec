@@ -4,7 +4,7 @@ namespace App\Http\Frontend\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-
+use App\Models\Product;
 use App\Http\Requests;
 
 class HomeController extends Controller
@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')->select('id', 'name', 'price', 'image')->orderBy('id', 'DESC')->skip(0)->take(6)->get();
+        $products = Product::select('id', 'name', 'price', 'image')->orderBy('id', 'DESC')->skip(0)->take(6)->get();
         return view('frontend.dashboard.index', compact('products'));
     }
 }

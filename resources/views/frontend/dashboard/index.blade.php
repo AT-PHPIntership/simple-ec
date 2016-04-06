@@ -2,7 +2,7 @@
 	@section('header')
     <div class="row" style="margin-bottom: 20px;">
         <div class="col-md-12" id="header">
-            <a href="{{url('/')}}"><img src=" {{ asset('uploads/banner.jpg') }} " width="100%"></a>
+            <a href="{!! url('/') !!}"><img src=" {!! asset('uploads/banner.jpg') !!} " width="100%"></a>
         </div>
     </div>
     @stop
@@ -21,7 +21,7 @@
             <div class="col-sm-6 col-md-4">
 			    <div class="thumbnail">
 			      <a href="#">
-                    <img src="{{ asset('uploads/'.$products->image) }}" alt="image not found" width="200px">
+                    <img src="{!! asset('uploads/'.$products->image) !!}" alt="image not found" width="200px">
                   </a>
 			      <div class="caption" >
 			        <h4 style="color:blue;">{{ $products->name }}</h4>

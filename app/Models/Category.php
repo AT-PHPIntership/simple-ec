@@ -24,4 +24,15 @@ class Category extends Model
         $photo->move($destinationPath, $imgName);
         return $imgName;
     }
+
+    /**
+     * Show menu in navbar
+     *
+     * @return object
+     */
+    public static function showNavbar()
+    {
+        $categories = self::select('id', 'name')->get();
+        return $categories;
+    }
 }

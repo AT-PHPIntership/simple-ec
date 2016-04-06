@@ -10,18 +10,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span></a>
+                  <a class="navbar-brand" href="{!! url('/') !!}"><span class="glyphicon glyphicon-home"></span></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{ url('/') }}">Home<span class="sr-only">(current)</span></a></li>
-                        <?php
-                            $categories = DB::table('categories')->select('name')->get();
-                        ?>
+                    <li class="active"><a href="{!! url('/') !!}">Home<span class="sr-only">(current)</span></a></li>
+                        <?php $categories = \App\Models\Category::showNavbar(); ?>
                         @foreach( $categories as $category )
-                        <li><a href="#">{!! $category->name !!}</a></li>
+                        <li><a href="#">{{ $category->name }}</a></li>
                         @endforeach
                   </ul>
                   <form class="navbar-form navbar-left" role="search">
@@ -31,7 +29,7 @@
                     <button type="submit" class="btn btn-default">Go</button>
                   </form>
                   <ul class="nav navbar-nav">
-                    <li><a href="{{ url('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> 0 Sản Phẩm</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> 0 Product</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"></a></li>
