@@ -50,6 +50,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="paginations"> {!! $users->render() !!} </div>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->
