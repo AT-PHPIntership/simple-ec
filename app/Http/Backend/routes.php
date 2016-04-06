@@ -18,4 +18,8 @@
 
         //product
         Route::resource('products', 'ProductsController');
+
+        //admin users
+        Route::resource('admin-users', 'AdminUsersController');
+
     });
