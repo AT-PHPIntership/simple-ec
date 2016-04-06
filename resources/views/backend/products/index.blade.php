@@ -8,7 +8,7 @@
                 Manager users
             </h1>
             <ol class="breadcrumb">
-                <li><a href="{{ url('/admin') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{!! route('admin') !!}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">List users</li>
             </ol>
         </section>
@@ -20,7 +20,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">List Products</h3>
-                            <a href="{{ route('admin.products.create') }}">
+                            <a href="{!! route('admin.products.create') !!}">
                                 <button type="button" class="btn btn-floating btn-primary btn-sm pull-right"><i class="icon wb-plus" aria-hidden="true"></i></button>
                             </a>
                         </div><!-- /.box-header -->
@@ -51,16 +51,16 @@
                                             <a href="{{ route('admin.products.edit',$product->id) }}" class="pull-left btn btn-sm btn-icon btn-default btn-info" >
                                                 <i class="icon wb-pencil" aria-hidden="true"></i>
                                             </a>
-                                            {{ Form::open(['route' => ['admin.products.destroy',$product->id], 'class'=>'pull-left', 'style' => 'margin-left: 3px;']) }}
-                                            {{ Form::hidden('_method', 'DELETE') }}
-                                            {{ Form::submit('delete', array('class' => 'btn-del btn btn-sm btn-icon btn-default btn-danger')) }}
-                                            {{ Form::close() }}
+                                            {!! Form::open(['route' => ['admin.products.destroy',$product->id], 'class'=>'pull-left', 'style' => 'margin-left: 3px;']) !!}
+                                            {!! Form::hidden('_method', 'DELETE') !!}
+                                            {!! Form::submit('delete', array('class' => 'btn-del btn btn-sm btn-icon btn-default btn-danger')) !!}
+                                            {!! Form::close() !!}
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="paginations"> {{ $products->render() }} </div>
+                            <div class="paginations"> {!! $products->render() !!} </div>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->

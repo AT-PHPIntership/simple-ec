@@ -5,13 +5,11 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                {{ $title }}
-            </h1>
+            <h1>Create product</h1>
             <ol class="breadcrumb">
-                <li><a href="{{ url('/admin') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="{{ url('/admin/products') }}">List users</a></li>
-                <li class="active">{{ $title }}</li>
+                <li><a href="{!! route('admin') !!}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{!! route('admin.products.index') !!}">List users</a></li>
+                <li class="active">Create product</li>
             </ol>
         </section>
 
@@ -20,7 +18,7 @@
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{ $title }}</h3>
+                    <h3 class="box-title">Create product</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 @if(count($errors) > 0)
@@ -37,36 +35,36 @@
                 {{ Form::open(['route' => 'admin.products.store', 'class' => 'form-horizontal', 'method' => 'POST' , 'enctype' => 'multipart/form-data']) }}
                     <div class="box-body">
                         <div class="form-group">
-                            {{ Form::label('address', 'Category:', array('class' => 'col-sm-2 control-label')) }}
+                            {!!  Form::label('address', 'Category:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-9">
                                 {{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('name', 'Name:', array('class' => 'col-sm-2 control-label')) }}
+                            {!! Form::label('name', 'Name:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-9">
                                 {{ Form::input('text', 'name', null, array('class' => 'form-control')) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label("image", 'Image:', ['class' => 'col-sm-2 control-label']) }}
+                            {!! Form::label("image", 'Image:', ['class' => 'col-sm-2 control-label']) !!}
                             <div class="col-sm-9">
                                 {{ Form::input('file', "image", null, ['class' => 'form-control']) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('quantity', 'Quantity:', array('class' => 'col-sm-2 control-label')) }}
+                            {!! Form::label('quantity', 'Quantity:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-3">
                                 {{ Form::input('text', 'quantity', null, array('class' => 'form-control')) }}
                             </div>
-                            {{ Form::label('price', 'Price:', array('class' => 'col-sm-2 control-label')) }}
+                            {!! Form::label('price', 'Price:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-3">
                                 {{ Form::input('text', 'price', null, array('class' => 'form-control')) }}
                             </div>
-                            {{ Form::label('unit', 'VNĐ', array('class' => 'col-sm-1 control-label')) }}
+                            {!! Form::label('unit', 'VNĐ', array('class' => 'col-sm-1 control-label')) !!}
                         </div>
                         <div class="form-group">
-                            {{ Form::label('description', 'Description:', array('class' => 'col-sm-2 control-label')) }}
+                            {!! Form::label('description', 'Description:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-9">
                                 {{ Form::textarea('description', null,['class'=>'form-control', 'rows' => 4, 'cols' => 40]) }}
                             </div>
@@ -74,7 +72,7 @@
                     </div><!-- /.box-body -->
                     <div class="box-footer">
                         {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
-                        <a href="{{ url('/admin/products') }}">
+                        <a href="{!! route('admin.products.index') !!}">
                             <button type="button" class="btn btn-default pull-right">Cancel</button>
                         </a>
                     </div><!-- /.box-footer -->
