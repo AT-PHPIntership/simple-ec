@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
+use Hash;
 
 class User extends Authenticatable
 {
@@ -11,8 +13,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','phone','adress'
     ];
 
     /**
@@ -23,4 +27,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Pagination for user
+     *
+     * @var int
+     */
+    protected $perPage = 10;
+
+    /**
+     * Relation with orders
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Orders');
+    }
 }
