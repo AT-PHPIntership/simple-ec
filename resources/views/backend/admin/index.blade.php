@@ -8,7 +8,7 @@
                 Manager users
             </h1>
             <ol class="breadcrumb">
-                <li><a href="{!! route('admin') !!}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{!!  route('admin') !!}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">List users</li>
             </ol>
         </section>
@@ -19,8 +19,8 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">List Products</h3>
-                            <a href="{!! route('admin.products.create') !!}">
+                            <h3 class="box-title">List adminUsers</h3>
+                            <a href="{!! route('admin.admin-users.create') !!}">
                                 <button type="button" class="btn btn-floating btn-primary btn-sm pull-right"><i class="icon wb-plus" aria-hidden="true"></i></button>
                             </a>
                         </div><!-- /.box-header -->
@@ -31,36 +31,31 @@
                                    data-plugin="dataTable">
                                 <thead>
                                 <tr>
-                                    <th>Category</th>
-                                    <th>Image</th>
                                     <th>Name</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
+                                    <th>Email</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($products as $product)
+                                    @foreach($adminUsers as $adminUser)
                                     <tr class="">
-                                        <td>{{$product->category->name}}</td>
-                                        <td><img src="{{ asset('/uploads/'.$product->image) }}" class="img img-rounded" width="50" height="50" alt=""></td>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->quantity}}</td>
-                                        <td>{{$product->price}}</td>
+                                        <td>{{$adminUser->name}}</td>
+                                        <td>{{$adminUser->email}}</td>
                                         <td>
-                                            <a href="{{ route('admin.products.edit',$product->id) }}" class="pull-left btn btn-sm btn-icon btn-default btn-info" >
-                                                <i class="icon wb-pencil" aria-hidden="true"></i>
+                                            <a href="{!! route('admin.admin-users.show',$adminUser->id) !!}" class="pull-left margin-r-5 btn btn-sm btn-icon btn-default btn-info" >
+                                                <i class="icon wb-eye" aria-hidden="true"></i>
                                             </a>
-                                            {!! Form::open(['route' => ['admin.products.destroy',$product->id], 'class'=>'pull-left', 'style' => 'margin-left: 3px;']) !!}
-                                            {!! Form::hidden('_method', 'DELETE') !!}
-                                            {!! Form::submit('delete', array('class' => 'btn-del btn btn-sm btn-icon btn-default btn-danger')) !!}
-                                            {!! Form::close() !!}
+                                            @if($adminUser->id == Auth()->guard('admin')->user()->id)
+                                                <a href="{!! route('admin.admin-users.edit',$adminUser->id) !!}" class="pull-left margin-r-5 btn btn-sm btn-icon btn-default btn-warning" >
+                                                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="paginations"> {!! $products->render() !!} </div>
+                            <div class="paginations"> {!! $adminUsers->render() !!} </div>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->

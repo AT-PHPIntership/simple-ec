@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\AdminUser;
+use App\User;
 use Illuminate\Support\ServiceProvider;
+use Hash;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +17,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        User::saving(function ($user) {
+            if (Hash::needsRehash($user['password'])) {
+                $user['password'] = Hash::make($user['password']);
+            }
+        });
+
+        AdminUser::saving(function ($user) {
+            if (Hash::needsRehash($user['password'])) {
+                $user['password'] = Hash::make($user['password']);
+            }
+        });
     }
 
     /**

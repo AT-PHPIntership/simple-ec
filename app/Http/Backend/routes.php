@@ -14,8 +14,13 @@
      * Route for Backend
      */
     Route::group(['middleware' => ['web']], function () {
-        Route::get('/', 'DashboardController@index');
-
+        Route::get('/', 'DashboardController@index')->name('admin');
+        //category
+        Route::resource('categories', 'CategoryController');
         //product
         Route::resource('products', 'ProductsController');
+        //admin users
+        Route::resource('admin-users', 'AdminUsersController');
+        //user
+        Route::resource('users', 'UsersController');
     });
