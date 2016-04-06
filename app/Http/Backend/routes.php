@@ -15,10 +15,10 @@
      */
     Route::group(['middleware' => ['web']], function () {
         Route::get('/', 'DashboardController@index')->name('admin');
-
+        //category
+        Route::resource('categories', 'CategoryController');
         //product
         Route::resource('products', 'ProductsController');
-
         //user
         Route::resource('users', 'UsersController');
     });
