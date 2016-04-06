@@ -66,7 +66,7 @@
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <!-- pagination -->
-            <div class="paginations"> {{ $categories->render() }} </div>
+            <div class="paginations"> {!! $categories->render() !!} </div>
             <!-- end pagination -->
    </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
