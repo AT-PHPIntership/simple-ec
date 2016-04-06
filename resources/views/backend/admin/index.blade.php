@@ -55,6 +55,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="paginations"> {!! $adminUsers->render() !!} </div>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->

@@ -7,8 +7,8 @@
         <section class="content-header">
             <h1>Create new admin users</h1>
             <ol class="breadcrumb">
-                <li><a href="{{ route('admin') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="{{ route('admin.admin-users.index') }}">List users</a></li>
+                <li><a href="{!! route('admin') !!}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{!! route('admin.admin-users.index') !!}">List users</a></li>
                 <li class="active">Create new admin users</li>
             </ol>
         </section>
@@ -26,7 +26,7 @@
                         <strong>Whoops!</strong> There were some problems with your input.<br><br>
                         <ul>
                             @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
+                                <li>{!! $error !!}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -73,7 +73,7 @@
                     </div><!-- /.box-body -->
                     <div class="box-footer">
                         {!! Form::submit('Save', array('class' => 'btn btn-primary')) !!}
-                        <a href="{{ route('admin.admin-users.index') }}">
+                        <a href="{!! route('admin.admin-users.index') !!}">
                             <button type="button" class="btn btn-default pull-right">Cancel</button>
                         </a>
                     </div><!-- /.box-footer -->

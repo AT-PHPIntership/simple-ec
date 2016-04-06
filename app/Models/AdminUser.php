@@ -17,6 +17,8 @@ class AdminUser extends Authenticatable
         'name', 'email', 'password', 'phone', 'address'
     ];
 
+    protected $perPage =10;
+
     /**
          * The attributes excluded from the model's JSON form.
          *
