@@ -32,7 +32,11 @@ class Category extends Model
      */
     public static function showNavbar()
     {
-        $menu = self::select('id', 'name')->get();
-        return $menu;
+        try {
+            $menu = Category::select('id', 'name')->get();
+            return $menu;
+        } catch (\Exception $ex) {
+            return ;
+        }
     }
 }
