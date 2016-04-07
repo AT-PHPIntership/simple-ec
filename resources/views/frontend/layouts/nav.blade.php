@@ -17,9 +17,8 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                     <li class="active"><a href="{!! url('/') !!}">Home<span class="sr-only">(current)</span></a></li>
-                        <?php $categories = \App\Models\Category::showNavbar(); ?>
-                        @foreach( $categories as $category )
-                        <li><a href="#">{{ $category->name }}</a></li>
+                        @foreach( $menu as $item )
+                        <li><a href="#">{{ $item->name }}</a></li>
                         @endforeach
                   </ul>
                   <form class="navbar-form navbar-left" role="search">
