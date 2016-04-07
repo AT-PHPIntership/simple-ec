@@ -32,8 +32,6 @@ class AuthController extends Controller
 
     protected $redirectPath = '/';
 
-    protected $guard = 'web';
-
     protected $redirectAfterLogout = '/';
 
     protected $registerView = 'frontend.auth.register';
