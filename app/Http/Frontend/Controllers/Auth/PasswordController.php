@@ -19,9 +19,7 @@ class PasswordController extends Controller
     */
 
     use ResetsPasswords;
-
-    protected $guard = 'web';
-
+    
     protected $redirectTo = '/';
 
     protected $linkRequestView = 'frontend.auth.passwords.email';
