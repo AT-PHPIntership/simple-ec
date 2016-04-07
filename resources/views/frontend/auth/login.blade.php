@@ -55,6 +55,8 @@
                                 </button>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                                <span> Or </span>
+                                <a class="btn btn-link" href="{{ url('/register') }}">Regiter</a>
                             </div>
                         </div>
                     </form>
