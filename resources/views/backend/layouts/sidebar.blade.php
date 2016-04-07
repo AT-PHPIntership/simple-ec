@@ -29,7 +29,7 @@
          <li class="header">MANAGER</li>
          <li><a href="{!! route('admin.categories.index') !!}"><i class="fa fa-inbox"></i> <span>Category</span></a></li>
          <li><a href="{!! route('admin.products.index') !!}"><i class="fa fa-gift"></i> <span>Products</span></a></li>
-         <li><a href="{!! route('admin.orders.index') !!}"><i class="fa fa-shopping-cart"></i> <span>Orders</span></a></li>
+         {{--<li><a href="{!! route('admin.orders.index') !!}"><i class="fa fa-shopping-cart"></i> <span>Orders</span></a></li>--}}
 
       </ul><!-- /.sidebar-menu -->
    </section>
