@@ -30,7 +30,7 @@ class Category extends Model
      *
      * @return object
      */
-    public static function showNavbar()
+    public static function getMenu()
     {
         try {
             $menu = Category::select('id', 'name')->get();

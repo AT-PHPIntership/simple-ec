@@ -14,12 +14,11 @@
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span></a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                     <li class="active"><a href="{!! url('/') !!}">Home<span class="sr-only">(current)</span></a></li>
-                        @foreach( $menu as $item )
+                        @foreach( $menus as $item )
                         <li><a href="#">{{ $item->name }}</a></li>
                         @endforeach
                   </ul>
