@@ -4,12 +4,23 @@ namespace App\Http\Frontend\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Http\Requests;
+use App\Http\Frontend\Requests;
+use Auth;
 
 class HomeController extends Controller
 {
     /**
      * Display a listing of the new products.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+//        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
