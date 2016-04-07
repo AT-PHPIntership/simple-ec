@@ -158,6 +158,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
 
     ],
 
@@ -206,7 +207,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
-        'Flash'      => Laracasts\Flash\Flash::class,
+        'Flash'     => Laracasts\Flash\Flash::class,
+        'Cart'      => Gloudemans\Shoppingcart\Facades\Cart::class,
     ],
 
 ];
