@@ -32,11 +32,7 @@ class Category extends Model
      */
     public static function getMenu()
     {
-        try {
-            $menu = Category::select('id', 'name')->get();
-            return $menu;
-        } catch (\Exception $ex) {
-            return ;
-        }
+        $menu = Category::select('id', 'name')->get();
+        return $menu;
     }
 }
