@@ -23,12 +23,15 @@
 Route::group(['middleware' => ['web','auth:web']], function () {
 
     Route::get('/home', 'HomeController@index');
+    Route::get('order', 'OrderController@index')->name('order');
+    Route::get('order/add', 'OrderController@addOrder')->name('order.add');
+    Route::get('order/success', 'OrderController@success')->name('order.success');
 });
 
 
 Route::group(['middleware' => ['web']], function () {
     // Authentication routes...
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('login', 'Auth\AuthController@getLogin');
     Route::post('login', 'Auth\AuthController@postLogin');
     Route::get('logout', 'Auth\AuthController@getLogout');
@@ -41,4 +44,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('password/email', 'Auth\PasswordController@postEmail');
     Route::get('password/reset/{token?}', 'Auth\PasswordController@getReset');
     Route::post('password/reset/{token?}', 'Auth\PasswordController@postReset');
+    Route::resource('cart', 'CartController@index');
+//    //shopping cart
+    Route::get('buy-product/{id}/{name}', 'CartController@buyProduct')->name('cart.buy');
 });
