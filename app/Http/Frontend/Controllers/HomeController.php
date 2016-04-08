@@ -2,20 +2,21 @@
 
 namespace App\Http\Frontend\Controllers;
 
-use App\Http\Frontend\Requests;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Http\Frontend\Requests;
 use Auth;
 
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Display a listing of the new products.
      *
      * @return void
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+        parent::__construct();
     }
 
     /**
@@ -25,6 +26,33 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.dashboard.index');
+        $products = Product::select('id', 'name', 'price', 'image')->orderBy('id', 'DESC')->skip(0)->take(6)->get();
+        return view('frontend.dashboard.index', compact('products'));
+    }
+
+    /**
+     * Show list products.
+     *
+     * @param int $id id category
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listProducts($id)
+    {
+        $listProducts = Product::select('id', 'name', 'price', 'quantity', 'image')->where('category_id', $id)->get();
+        return view('frontend.dashboard.listProducts', compact('listProducts'));
+    }
+
+     /**
+     * Show detail products.
+     *
+     * @param int $id id product
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function detailProduct($id)
+    {
+        $detailProduct = Product::findOrFail($id);
+        return view('frontend.dashboard.detailProduct', compact('detailProduct'));
     }
 }

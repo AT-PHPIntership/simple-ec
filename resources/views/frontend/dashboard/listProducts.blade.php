@@ -8,28 +8,27 @@
     @stop
     @section('content')
 	<!-- Content-->
-	<!-- title new products -->
+	<!-- title list product -->
 	<div class="panel panel-default" style="background: yellow ">
 	<div class="panel-body">
-		 New Products
+		 List Products
 	</div>
 	</div>
-	<!--end -->
+	<!--end-->
 	<div class="row">
-		<!--list news products-->
-			@foreach($products as product)
+		<!--List products by categoy-->
+			@foreach( $listProducts as $list )
             <div class="col-sm-6 col-md-4">
 			    <div class="thumbnail">
-			      <img src="{!! asset('uploads/'.$product->image) !!}" alt="image is not found" width="200px;" >
+			      <img src="{!! asset('uploads/'.$list->image) !!}" alt="image not found" >
 			      <div class="caption" >
-			        <h4>{{ $product->name }}</h4>
-			        <p>{{ $product->price }}</p>
-			        <p><a href="#" class="btn btn-primary" role="button">Add Cart</a> <a href="{!! url('detail/'.$product->id) !!}" class="btn btn-success" role="button">View Detail</a></p>
+                    <h4>{{ $list->name }}</h4>
+			        <p>{{ $list->price }}</p>
+			        <p><a href="#" class="btn btn-primary" role="button">Add Cart</a> <a href="{!! url('detail/' .$list->id) !!}" class="btn btn-success" role="button">View Detail</a></p>
 			      </div>
 			    </div>
 			 </div>
              @endforeach
 		<!-- end -->
-	</div>
 	</div>
 	@stop

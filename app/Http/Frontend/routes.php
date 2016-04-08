@@ -41,4 +41,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('password/email', 'Auth\PasswordController@postEmail');
     Route::get('password/reset/{token?}', 'Auth\PasswordController@getReset');
     Route::post('password/reset/{token?}', 'Auth\PasswordController@postReset');
+    //List products
+    Route::get('list/{id}', 'HomeController@listProducts');
+    //Detail products
+    Route::get('detail/{id}', 'HomeController@detailProduct');
+
 });
