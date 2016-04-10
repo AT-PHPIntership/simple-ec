@@ -23,6 +23,9 @@
 Route::group(['middleware' => ['web','auth:web']], function () {
 
     Route::get('/home', 'HomeController@index');
+    Route::get('order', 'OrderController@index')->name('order');
+    Route::get('order/add', 'OrderController@addOrder')->name('order.add');
+    Route::get('order/success', 'OrderController@success')->name('order.success');
 });
 
 
