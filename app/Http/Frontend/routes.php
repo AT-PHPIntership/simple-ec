@@ -28,7 +28,7 @@ Route::group(['middleware' => ['web','auth:web']], function () {
 
 Route::group(['middleware' => ['web']], function () {
     // Authentication routes...
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('login', 'Auth\AuthController@getLogin');
     Route::post('login', 'Auth\AuthController@postLogin');
     Route::get('logout', 'Auth\AuthController@getLogout');
@@ -41,4 +41,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('password/email', 'Auth\PasswordController@postEmail');
     Route::get('password/reset/{token?}', 'Auth\PasswordController@getReset');
     Route::post('password/reset/{token?}', 'Auth\PasswordController@postReset');
+
+    Route::resource('cart', 'CartController');
+    Route::put('cart/update/{id}', 'CartController@updateQuantity')->name('cart.update-qty');
+    //shopping cart
+    Route::get('buy-product/{id}/{name}', 'CartController@addProduct')->name('cart.buy');
 });
