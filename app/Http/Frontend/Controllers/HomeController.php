@@ -26,33 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::select('id', 'name', 'price', 'image')->orderBy('id', 'DESC')->skip(0)->take(6)->get();
-        return view('frontend.dashboard.index', compact('products'));
-    }
-
-    /**
-     * Show list products.
-     *
-     * @param int $id id category
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function listProducts($id)
-    {
-        $listProducts = Product::select('id', 'name', 'price', 'quantity', 'image')->where('category_id', $id)->get();
-        return view('frontend.dashboard.listProducts', compact('listProducts'));
-    }
-
-     /**
-     * Show detail products.
-     *
-     * @param int $id id product
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function detailProduct($id)
-    {
-        $detailProduct = Product::findOrFail($id);
-        return view('frontend.dashboard.detailProduct', compact('detailProduct'));
+        return view('frontend.dashboard.index');
     }
 }

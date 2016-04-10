@@ -30,6 +30,9 @@
 			 </div>
              @endforeach
 		<!-- end -->
+        <!-- pagination -->
+            <div class="paginations"> {!! $products->render() !!} </div>
+        <!-- end pagination -->
 	</div>
 	</div>
 	@stop
