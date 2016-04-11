@@ -17,18 +17,25 @@
 	<!--end-->
 	<div class="row">
 		<!--List products by categoy-->
-			@foreach( $listProducts as $list )
+            @foreach( $products as $list )
             <div class="col-sm-6 col-md-4">
 			    <div class="thumbnail">
 			      <img src="{!! asset('uploads/'.$list->image) !!}" alt="image not found" >
 			      <div class="caption" >
                     <h4>{{ $list->name }}</h4>
 			        <p>{{ $list->price }}</p>
-			        <p><a href="#" class="btn btn-primary" role="button">Add Cart</a> <a href="{!! url('detail/' .$list->id) !!}" class="btn btn-success" role="button">View Detail</a></p>
+			        <p><a href="{!! route('cart.buy', [$list->id, $list->keywords]) !!}" class="btn btn-primary" role="button">Add Cart</a> <a href="{!! url('detail/'.$list->id) !!}" class="btn btn-success" role="button">View Detail</a></p>
 			      </div>
 			    </div>
 			 </div>
              @endforeach
 		<!-- end -->
 	</div>
+    <div class="row">
+        <div class="col-md-12">
+        <!-- Pagination -->
+             <div class="paginate"> {!! $products->render() !!} </div>
+        <!-- end -->
+        </div>
+    </div>
 	@stop

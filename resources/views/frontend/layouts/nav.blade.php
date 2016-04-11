@@ -19,7 +19,7 @@
                   <ul class="nav navbar-nav">
                     <li class="active"><a href="{!! url('/') !!}">Home<span class="sr-only">(current)</span></a></li>
                         @foreach( $menus as $item )
-                        <li><a href="{!! route('list'.$item->id) !!}">{{ $item->name }}</a></li>
+                        <li><a href="{!! url('list/'. $item->id) !!}">{{ $item->name }}</a></li>
                         @endforeach
                   </ul>
                   <form class="navbar-form navbar-left" role="search">
@@ -29,7 +29,7 @@
                     <button type="submit" class="btn btn-default">Go</button>
                   </form>
                   <ul class="nav navbar-nav">
-                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> 0 Product</a></li>
+                    <li><a href="{!! route('cart.index') !!}"><span class="glyphicon glyphicon-shopping-cart"></span> {!! Cart::count() !!} Product</a></li>
                   </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#"></a></li>

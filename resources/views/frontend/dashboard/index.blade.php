@@ -16,23 +16,20 @@
 	</div>
 	<!--end -->
 	<div class="row">
-		<!--list news products-->
-			@foreach($products as product)
-            <div class="col-sm-6 col-md-4">
-			    <div class="thumbnail">
-			      <img src="{!! asset('uploads/'.$product->image) !!}" alt="image is not found" width="200px;" >
-			      <div class="caption" >
-			        <h4>{{ $product->name }}</h4>
-			        <p>{{ $product->price }}</p>
-			        <p><a href="#" class="btn btn-primary" role="button">Add Cart</a> <a href="{!! url('detail/'.$product->id) !!}" class="btn btn-success" role="button">View Detail</a></p>
-			      </div>
-			    </div>
-			 </div>
-             @endforeach
-		<!-- end -->
-        <!-- pagination -->
-            <div class="paginations"> {!! $products->render() !!} </div>
-        <!-- end pagination -->
+        <!--list news products-->
+        @foreach($products as $product)
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <img src="{!! asset('uploads/'.$product->image) !!}" alt="image is not found" width="200px;" >
+              <div class="caption" >
+                <h4>{{ $product->name }}</h4>
+                <p>{{ $product->price }}</p>
+                <p><a href="{!! route('cart.buy', [$product->id, $product->keywords]) !!}" class="btn btn-primary" role="button">Add Cart</a> <a href="{!! url('detail/'. $product->id) !!}" class="btn btn-success" role="button">View Detail</a></p>
+              </div>
+            </div>
+         </div>
+         @endforeach
+        <!-- end -->
 	</div>
 	</div>
 	@stop
