@@ -22,11 +22,10 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Order::with(['ordersDetail','user'])->orderBy('id', 'DESC')->paginate();
-        $orderList = new Order();
         foreach ($orders as $order) {
-            $order->viewBold = ($order->status == Order::ORDER_UNVIEW) ? 'text-bold' : '';
-            $order->viewTitle = $orderList->getTitleStatus($order->status);
-            $order->viewCss = $orderList->getCssStatus($order->status);
+            $order->viewBold = Order::getBoldStatus($order->status);
+            $order->viewTitle = Order::getTitleStatus($order->status);
+            $order->viewCss = Order::getCssStatus($order->status);
         }
         return view('backend.orders.index', compact('orders'));
     }
