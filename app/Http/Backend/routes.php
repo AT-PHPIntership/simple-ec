@@ -23,6 +23,8 @@ Route::group(['middleware' => ['admin','auth:admin']], function () {
     Route::resource('admin-users', 'AdminUsersController');
     //user
     Route::resource('users', 'UsersController');
+    //orders
+    Route::resource('orders', 'OrdersController');
 });
 
 Route::group(['middleware' => ['admin']], function () {
