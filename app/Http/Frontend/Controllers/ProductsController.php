@@ -7,17 +7,8 @@ use App\Models\Product;
 use App\Http\Frontend\Requests;
 use Auth;
 
-class HomeController extends Controller
+class ProductsController extends Controller
 {
-    /**
-     * Display a listing of the new products.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Show the application dashboard.
@@ -26,6 +17,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.dashboard.index');
+        $products = Product::select('id', 'name', 'image', 'price')->orDerBy('id', 'DESC')->skip(0)->take(6)->get();
+        return view('frontend.dashboard.index', compact('products'));
     }
 }

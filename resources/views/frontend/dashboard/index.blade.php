@@ -17,15 +17,15 @@
 	<!--end title new products-->
 	<div class="row">
 		<!--list new products-->
-			@foreach( $products as $products )
+            @foreach( $products as $product )
             <div class="col-sm-6 col-md-4">
 			    <div class="thumbnail">
 			      <a href="#">
-                    <img src="{!! asset('uploads/'.$products->image) !!}" alt="image not found" width="200px">
+                    <img src="{!! asset('uploads/'.$product->image) !!}" alt="image not found" width="200px">
                   </a>
 			      <div class="caption" >
-			        <h4 style="color:blue;">{{ $products->name }}</h4>
-			        <p style="color:red;">{{ number_format($products->price,0,",",".") }} $</p>
+			        <h4 style="color:blue;">{{ $product->name }}</h4>
+			        <p style="color:red;">{{ number_format($product->price,0,",",".") }}</p>
 			        <p><a href="#" class="btn btn-primary" role="button">Add Cart</a> <a href="#" class="btn btn-success" role="button">View Detail</a></p>
 			      </div>
 			    </div>
