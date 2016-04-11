@@ -11,6 +11,16 @@ use App\Models\Product;
 class CartController extends Controller
 {
     /**
+     * Display a listing of the new products.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
