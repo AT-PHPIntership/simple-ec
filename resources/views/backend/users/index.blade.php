@@ -42,9 +42,6 @@
                                             <a href="{!! route('admin.users.show',$user->id) !!}" class="pull-left margin-r-5 btn btn-sm btn-icon btn-info" >
                                                 <i class="icon wb-eye" aria-hidden="true"></i>
                                             </a>
-                                            <button class="btn btn-sm btn-icon btn-danger" type="submit" data-toggle="modal" data-target="#confirmDelete">
-                                                <i class='glyphicon glyphicon-trash'></i>
-                                            </button>
                                             {!! Form::open(['route' => ['admin.users.destroy',$user->id], 'class'=>'pull-left']) !!}
                                             {!! Form::hidden('_method', 'DELETE') !!}
                                             <button class="btn btn-sm btn-icon btn-danger" type="submit">
