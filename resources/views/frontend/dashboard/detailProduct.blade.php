@@ -50,7 +50,7 @@
 					</tr>
 					<tr>
 						<th><input name="quantity" value="1" style="padding: 4px;" type="number" min="1" max="1000"></th>
-						<td ><a href="#" class="btn btn-success">Add Cart</a></td>
+						<td ><a href="{!! route('cart.buy', [$product->id, $product->slug]) !!}" class="btn btn-success">Add Cart</a></td>
 					</tr>
 				</table>
 			{!! Form::close() !!}

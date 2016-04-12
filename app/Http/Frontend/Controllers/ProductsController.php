@@ -27,7 +27,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::select('id', 'name', 'image', 'price', 'keywords')->orDerBy('id', 'DESC')->skip(0)->take(6)->get();
+        $products = Product::select('id', 'name', 'image', 'price', 'slug')->orDerBy('id', 'DESC')->skip(0)->take(6)->get();
         return view('frontend.dashboard.index', compact('products'));
     }
 
