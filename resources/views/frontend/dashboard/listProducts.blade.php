@@ -24,7 +24,7 @@
 			      <div class="caption" >
                     <h4>{{ $list->name }}</h4>
 			        <p>{{ $list->price }}</p>
-			        <p><a href="{!! route('cart.buy', [$list->id, $list->slug]) !!}" class="btn btn-primary" role="button">Add Cart</a> <a href="{!! url('detail/'.$list->id) !!}" class="btn btn-success" role="button">View Detail</a></p>
+			        <p><a href="{!! route('cart.buy', [ $list->slug ]) !!}" class="btn btn-primary" role="button">Add Cart</a> <a href="{!! url('detail/'.$list->id) !!}" class="btn btn-success" role="button">View Detail</a></p>
 			      </div>
 			    </div>
 			 </div>
