@@ -30,6 +30,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('password/email', 'Auth\PasswordController@postEmail');
     Route::get('password/reset/{token?}', 'Auth\PasswordController@getReset');
     Route::post('password/reset/{token?}', 'Auth\PasswordController@postReset');
-    //index frontend
+    //Index frontend
     Route::get('/', 'ProductsController@index');
+    //List products
+    Route::get('list/{id}', 'ProductsController@listProducts');
+    //Detail products
+    Route::get('detail/{id}', 'ProductsController@detailProduct');
 });

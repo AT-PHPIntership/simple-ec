@@ -1,5 +1,6 @@
 @include('frontend.layouts.header')
 	<!-- navbar -->
+
     @include('frontend.layouts.nav')
 	<!--end navbar -->
 	<!--header-->
@@ -14,7 +15,6 @@
     <!-- include js -->
     <script type="text/javascript" src="{!! asset('assets/frontend/bootstrap/js/jquery-libary.js') !!} "></script>
     <script type="text/javascript" src="{!! asset('assets/frontend/bootstrap/js/bootstrap.min.js') !!}"></script>
-
 
 </body>
 </html>
