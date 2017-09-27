@@ -42,9 +42,12 @@
                                             <a href="{!! route('admin.users.show',$user->id) !!}" class="pull-left margin-r-5 btn btn-sm btn-icon btn-info" >
                                                 <i class="icon wb-eye" aria-hidden="true"></i>
                                             </a>
-                                            <button class="btn btn-sm btn-icon btn-danger" type="submit" data-toggle="modal" data-target="#confirmDelete">
+                                            {!! Form::open(['route' => ['admin.users.destroy',$user->id], 'class'=>'pull-left']) !!}
+                                            {!! Form::hidden('_method', 'DELETE') !!}
+                                            <button class="btn btn-sm btn-icon btn-danger" type="submit">
                                                 <i class='glyphicon glyphicon-trash'></i>
                                             </button>
+                                            {!! Form::close() !!}
                                         </td>
                                     </tr>
                                     @endforeach
@@ -57,24 +60,4 @@
             </div><!-- /.row -->
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
-    <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Delete User</h4>
-                </div>
-                <div class="modal-body text-center">
-                    <h3 class="text-danger">Are you sure delete this user?</h3>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    {!! Form::open(['route' => ['admin.users.destroy',$user->id], 'class'=>'pull-left']) !!}
-                    {!! Form::hidden('_method', 'DELETE') !!}
-                    {!! Form::submit('delete', array('class' => 'btn btn-icon btn-danger')) !!}
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection

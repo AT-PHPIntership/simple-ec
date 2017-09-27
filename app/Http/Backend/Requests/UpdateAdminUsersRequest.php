@@ -25,9 +25,6 @@ class UpdateAdminUsersRequest extends Request
     public function rules()
     {
 
-        return [
-            'name'     => 'required|min:6|max:25|regex:/^[a-zA-Z0-9]+([_\s\-]?[a-zA-Z0-9])*$/|unique:admin_users,name,'.$this->segment(3),
-            'email'    => 'required|email|max:255|unique:admin_users,email,'.$this->segment(3)
-        ];
+        return [];
     }
 }

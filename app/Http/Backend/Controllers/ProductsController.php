@@ -6,8 +6,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Backend\Requests;
-use App\http\Backend\Requests\CreateProductsRequest;
-use App\http\Backend\Requests\UpdateProductsRequest;
+use App\Http\Backend\Requests\CreateProductsRequest;
+use App\Http\Backend\Requests\UpdateProductsRequest;
 use App\Http\Backend\Controllers\Controller;
 use DB;
 use App\Models\Category;
